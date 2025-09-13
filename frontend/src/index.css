@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+/* === THEME VARIABLES === */
 @theme {
   /* === CORE BRAND COLORS === */
   --color-primary: oklch(0.2895 0.0622 263.95); /* Deep navy */

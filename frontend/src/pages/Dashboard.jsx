@@ -168,7 +168,7 @@ const Dashboard = () => {
     }, 3000);
   };
 
-  // Function to get URL (example implementation)
+  // Function to get URL 
   const getUrl = async (url) => {
     try {
       const response = await axios.post(API_ENDPOINTS.GET_URL, {
