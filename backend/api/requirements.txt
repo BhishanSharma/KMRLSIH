@@ -9,3 +9,5 @@ python-jose
 bcrypt
 pydantic
 python-dotenv
+redis 
+aioredis

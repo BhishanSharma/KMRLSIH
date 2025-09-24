@@ -6,6 +6,8 @@ from api.app.config import supabase
 from api.app.schemas.models import URLRequest, SUMMARYRequest, ListDocsRequest, compliancesRequest, searchRequest
 from nlpPipelne.ProcessPipeline import process_file
 from nlpPipelne.stages.EmbedIndex import search
+import json
+from fastapi import Request
 
 router = APIRouter()
 
@@ -124,13 +126,31 @@ async def summary(request: SUMMARYRequest):
     return {"error": "No summary found"}
 
 @router.get("/listdocs")
-async def listdocs(request: ListDocsRequest):
-    dept_id = supabase.table("users").select("department").eq("id", request.user_id).execute()
-    response = supabase.table("documents").select("*") \
-        .eq("dept_id", dept_id).execute()
-    if response.data:
-        return {"data": response.data}
-    return {"error": "No docs found"}
+async def listdocs(request: Request, user_id: str):
+    redis_conn = request.app.state.redis
+    cache_key = f"user_docs:{user_id}"
+
+    # Check if cached
+    cached_data = await redis_conn.get(cache_key)
+    if cached_data:
+        return {"data": json.loads(cached_data), "cached": True}
+
+    # Fetch department ID
+    dept_resp = supabase.table("users").select("department").eq("id", user_id).execute()
+    if not dept_resp.data:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    dept_id = dept_resp.data[0]["department"]
+
+    # Fetch documents
+    response = supabase.table("documents").select("*").eq("department", dept_id).execute()
+    if not response.data:
+        return {"error": "No docs found"}
+
+    # Cache result for 60 seconds
+    await redis_conn.set(cache_key, json.dumps(response.data), ex=60)
+
+    return {"data": response.data, "cached": False}
 
 @router.get("/compliances")
 async def compliances(request: compliancesRequest):
