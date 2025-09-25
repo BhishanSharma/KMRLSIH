@@ -41,7 +41,7 @@ const ProfilePreferences = () => {
               <p className="text-neutral-600">Customize how you receive updates and alerts</p>
             </div>
             <Link 
-              to="/profile" 
+              to="/dashboard" 
               className="px-4 py-2 bg-accent text-white rounded-md hover:bg-accent/90 transition-colors"
             >
               Back to Profile

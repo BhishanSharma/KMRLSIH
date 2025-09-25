@@ -125,5 +125,21 @@
   "selectAll": "എല്ലാം തിരഞ്ഞെടുക്കുക",
   "deselectAll": "എല്ലാം തിരഞ്ഞെടുക്കാതിരിക്കുക",
   "expandAll": "എല്ലാം വികസിപ്പിക്കുക",
-  "collapseAll": "എല്ലാം ചുരുക്കുക"
+  "collapseAll": "എല്ലാം ചുരുക്കുക",
+
+  
+  "history": "ചരിത്രം",
+  "compliance": "പാലിക്കൽ",
+  "auditLogs": "ഓഡിറ്റ് രേഖകൾ",
+  "help": "സഹായം",
+  "faq": "പതിവുചോദ്യങ്ങൾ",
+  "contactSupport": "പിന്തുണയുമായി ബന്ധപ്പെടുക",
+  "termsOfService": "സേവന നിബന്ധനകൾ",
+  "privacyPolicy": "സ്വകാര്യതാ നയം",
+  "about": "വിവരണം",
+  "version": "പതിപ്പ് 1.0.0",
+  "adminOptions": "അഡ്മിൻ ഓപ്ഷനുകൾ",
+  "viewsummary": "സംഗ്രഹം കാണുക",
+  "uploadLink" : "അപ്‌ലോഡ്"
+
 }

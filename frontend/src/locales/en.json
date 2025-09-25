@@ -141,8 +141,6 @@
   "about": "About",
   "version": "Version 1.0.0",
   "adminOptions": "Admin Options",
-  "viewsummary": "View Summary"
-  
-
-
+  "viewsummary": "View Summary",
+  "uploadLink": "Upload Link"
 }

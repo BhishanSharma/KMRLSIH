@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Upload, Link as LinkIcon } from "lucide-react"; // optional icons
-
+import { X, Upload, Link as LinkIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-export default function FloatingMenu({ onFileClick, onLinkClick }) {
+export default function FloatingMenu() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -13,7 +12,7 @@ export default function FloatingMenu({ onFileClick, onLinkClick }) {
       {/* Toggle Button */}
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center justify-center w-14 h-14 rounded-full bg-primary text-white shadow-lg hover:scale-110 transition-transform"
+        className="flex items-center justify-center w-14 h-14 rounded-full bg-green-500 text-green-200 shadow-lg hover:scale-110 transition-transform"
       >
         {open ? <X size={24} /> : <Upload size={24} />}
       </button>
@@ -26,13 +25,13 @@ export default function FloatingMenu({ onFileClick, onLinkClick }) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
             transition={{ duration: 0.2 }}
-            className="absolute bottom-16 right-0 flex flex-col gap-5"
+            className="fixed bottom-24 right-6 flex flex-col gap-5"
           >
             {/* Upload File */}
             <motion.button
               whileTap={{ scale: 0.9 }}
-              onClick={ ()  => {navigate("/uploadfile");}}
-              className="flex items-center justify-center w-14 h-14 rounded-full bg-secondary text-primary shadow-md hover:scale-110 transition-transform"
+              onClick={() => navigate("/uploadfile")}
+              className="flex items-center justify-center w-14 h-14 rounded-full bg-green-50 text-green-500 border-green-500 hover:bg-green-500 hover:text-green-200  shadow-md hover:scale-110 transition-transform"
             >
               <Upload size={20} />
             </motion.button>
@@ -40,8 +39,8 @@ export default function FloatingMenu({ onFileClick, onLinkClick }) {
             {/* Upload Link */}
             <motion.button
               whileTap={{ scale: 0.9 }}
-              onClick={ ()  => {navigate("/uploadurl");}}
-              className="flex items-center justify-center mb-5 w-14 h-14 rounded-full bg-secondary text-primary shadow-md hover:scale-110 transition-transform"
+              onClick={() => navigate("/uploadurl")}
+              className="flex items-center justify-center w-14 h-14 rounded-full  bg-green-50 text-green-500 border-green-500 hover:bg-green-500 hover:text-green-200  shadow-md hover:scale-110 transition-transform"
             >
               <LinkIcon size={20} />
             </motion.button>
