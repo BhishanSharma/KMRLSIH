@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { listDocuments } from "../api/services";
 import { useAuth } from "../context/AuthContext";
-import { CheckCircle, UploadCloud } from "lucide-react";
+import { UploadCloud } from "lucide-react";
 
 export default function UploadCompliance() {
   const { user } = useAuth();
@@ -10,6 +10,7 @@ export default function UploadCompliance() {
 
   const [compliance, setCompliance] = useState({
     docId: "",
+    file: null,
     deadline: "",
     status: "",
     assignedTo: "",
@@ -17,12 +18,12 @@ export default function UploadCompliance() {
   });
 
   useEffect(() => {
-    if (!user?.user_id) return;
+    if (!user?.id) return;
 
     const fetchDocuments = async () => {
       try {
         const docs = await listDocuments(user.id);
-        setDocuments(docs);
+        setDocuments(docs?.data || []); // assuming API returns {data: [...]}
       } catch (err) {
         console.error("Failed to fetch documents:", err);
       } finally {
@@ -33,9 +34,44 @@ export default function UploadCompliance() {
     fetchDocuments();
   }, [user?.id]);
 
-  const handleSubmit = () => {
-    console.log("Upload Compliance:", compliance);
-    // API call here
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setCompliance({ ...compliance, file });
+  };
+
+  const handleSubmit = async () => {
+    if (!compliance.docId) {
+      alert("Please select a document!");
+      return;
+    }
+    if (!compliance.file) {
+      alert("Please select a file before submitting!");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("docId", compliance.docId);
+    formData.append("file", compliance.file);
+    formData.append("deadline", compliance.deadline);
+    formData.append("status", compliance.status);
+    formData.append("assignedTo", compliance.assignedTo);
+    formData.append("remarks", compliance.remarks);
+
+    try {
+      const res = await fetch("/api/compliance/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!res.ok) throw new Error("Upload failed");
+      const data = await res.json();
+
+      console.log("Compliance uploaded:", data);
+      alert("Compliance uploaded successfully!");
+    } catch (err) {
+      console.error("Error uploading compliance:", err);
+      alert("Upload failed. Please try again.");
+    }
   };
 
   return (
@@ -45,31 +81,46 @@ export default function UploadCompliance() {
           Upload Compliance Rules
         </h1>
         <p className="text-gray-500 mt-2">
-          Assign documents, set deadlines, and track compliance efficiently
+          Upload a file, assign deadlines, and track compliance efficiently
         </p>
       </header>
 
       <div className="w-full mx-auto p-8 bg-white rounded-2xl shadow-lg flex flex-col gap-6">
         {/* Document Selection */}
         <label className="text-gray-700 font-medium">Select Document</label>
-        <input
-          type="text"
-          placeholder="Demo File"
-          
-          className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none  text-gray-900"
-        />
-          {/*<option value="">
+        <select
+          value={compliance.docId}
+          onChange={(e) =>
+            setCompliance({ ...compliance, docId: e.target.value })
+          }
+          className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none text-gray-900"
+        >
+          <option value="">
             {loadingDocs ? "Loading documents..." : "Select Document"}
           </option>
-          <option value="demo-file">Demo File</option>
-          {documents.length > 0
-            ? documents.map((doc) => (
-                <option key={doc.doc_id || doc.id} value={doc.doc_id || doc.id}>
-                  {doc.title || doc.doc_id || doc.id}
-                </option>
-              ))
-            : !loadingDocs && <option disabled>No documents found</option>}
-        </select>*/}
+          {documents.length > 0 ? (
+            documents.map((doc) => (
+              <option key={doc.doc_id || doc.id} value={doc.doc_id || doc.id}>
+                {doc.title || `Document ${doc.doc_id || doc.id}`}
+              </option>
+            ))
+          ) : (
+            !loadingDocs && <option disabled>No documents found</option>
+          )}
+        </select>
+
+        {/* File Upload */}
+        <label className="text-gray-700 font-medium">Upload File</label>
+        <input
+          type="file"
+          onChange={handleFileChange}
+          className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none text-gray-900"
+        />
+        {compliance.file && (
+          <p className="text-sm text-gray-600">
+            Selected File: {compliance.file.name}
+          </p>
+        )}
 
         {/* Deadline */}
         <label className="text-gray-700 font-medium">Deadline</label>
@@ -79,7 +130,7 @@ export default function UploadCompliance() {
           onChange={(e) =>
             setCompliance({ ...compliance, deadline: e.target.value })
           }
-          className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none  text-gray-900"
+          className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none text-gray-900"
         />
 
         {/* Status */}
@@ -89,7 +140,7 @@ export default function UploadCompliance() {
           onChange={(e) =>
             setCompliance({ ...compliance, status: e.target.value })
           }
-          className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none  text-gray-900"
+          className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none text-gray-900"
         >
           <option value="">Select Status</option>
           <option value="active">Active</option>
@@ -106,7 +157,7 @@ export default function UploadCompliance() {
           onChange={(e) =>
             setCompliance({ ...compliance, assignedTo: e.target.value })
           }
-          className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none  text-gray-900"
+          className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none text-gray-900"
         />
 
         {/* Remarks */}
@@ -117,7 +168,7 @@ export default function UploadCompliance() {
           onChange={(e) =>
             setCompliance({ ...compliance, remarks: e.target.value })
           }
-          className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none  text-gray-900 resize-none"
+          className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none text-gray-900 resize-none"
           rows={4}
         />
 
