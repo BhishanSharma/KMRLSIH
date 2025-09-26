@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { motion } from "framer-motion";
 import gsap from "gsap";
+import { login as loginUser } from "../api/services";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ export default function Login() {
     setLoading(true);
     setError("");
     try {
-      const data = await loginApi(employeeId, password);
+      const data = await loginUser(employeeId, password);
       login(data.user);
       navigate("/dashboard");
     } catch (err) {

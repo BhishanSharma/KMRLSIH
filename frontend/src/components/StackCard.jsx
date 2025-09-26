@@ -58,7 +58,7 @@ const StackCard = ({
                     </h4>
                     <p className="text-xs text-gray-500">
                       Priority: {document.priority} |{" "}
-                      Status: {document.marked_as_read ? "Read" : document.viewed ? "Viewed" : "New"}
+                      Status: {document.processed=="Processed"? "Summary Available" : "Summary Not Available"}
                     </p>
                   </div>
 
