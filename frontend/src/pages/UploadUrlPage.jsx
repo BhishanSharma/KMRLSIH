@@ -73,7 +73,7 @@ function UploadUrlPage() {
   };
 
   return (
-    <div className="min-h-screen p-8 bg-gray-50">
+    <div className="min-h-screen p-8 rounded-2xl bg-white/30">
       <h1 className="text-4xl font-bold text-gray-800 mb-10">
         Upload Document URL
       </h1>
@@ -81,7 +81,7 @@ function UploadUrlPage() {
       {/* === First Row: User ID, Priority, Departments === */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         {/* User ID */}
-        <div className="bg-white rounded-2xl shadow-lg p-6 flex flex-col">
+        <div className="bg-white/30 rounded-2xl shadow-lg p-6 flex flex-col">
           <label className="text-sm font-medium text-gray-600 mb-2">
             User ID
           </label>
@@ -89,13 +89,13 @@ function UploadUrlPage() {
             type="text"
             value={user?.id || ""}
             disabled
-            className="w-full rounded-lg border border-green-200 p-3 bg-green-200 text-green-500 font-medium"
+            className="w-full rounded-lg border border-white/50 p-3 bg-white/30 text-black font-medium"
           />
         </div>
 
         {/* Priority */}
-        <div className="bg-white rounded-2xl shadow-lg p-6 flex flex-col">
-          <label className="text-sm font-medium text-gray-600 mb-3">
+        <div className="bg-white/30 rounded-2xl shadow-lg p-6 flex flex-col">
+          <label className="text-sm font-medium text-black mb-3">
             Priority
           </label>
           <div className="flex gap-3">
@@ -106,8 +106,8 @@ function UploadUrlPage() {
                 disabled={isLoading}
                 className={`px-5 py-2 rounded-full border font-semibold transition ${
                   priority === p
-                    ? "bg-gradient-to-r from-green-200 to-green-300 text-green-700 border-green-500"
-                    : "bg-white text-green-500 border-gray-300 hover:border-green-500 hover:bg-green-50"
+                    ? "bg-white/30 text-black border-white/50"
+                    : "bg-white text-black border-gray-300 hover:border-white/50 hover:bg-white/50"
                 } ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
               >
                 {p.charAt(0).toUpperCase() + p.slice(1)}
@@ -117,8 +117,8 @@ function UploadUrlPage() {
         </div>
 
         {/* Departments */}
-        <div className="bg-white rounded-2xl shadow-lg p-6 flex flex-col">
-          <label className="text-sm font-medium text-gray-600 mb-3">
+        <div className="bg-white/30 rounded-2xl shadow-lg p-6 flex flex-col">
+          <label className="text-sm font-medium text-black mb-3">
             Departments
           </label>
           <div className="flex flex-wrap gap-3">
@@ -129,8 +129,8 @@ function UploadUrlPage() {
                 disabled={isLoading}
                 className={`px-4 py-2 rounded-full border font-medium transition ${
                   selectedDepartments.includes(dept)
-                    ? "bg-green-200 text-green-700 border-green-200"
-                    : "bg-white text-gray-700 border-gray-300 hover:bg-green-50 hover:border-green-500"
+                    ? "bg-white/30 text-black border-white/50"
+                    : "bg-white/30 text-black border-gray-300 hover:bg-white/50 hover:border-white/50"
                 } ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
               >
                 {dept}
@@ -141,8 +141,8 @@ function UploadUrlPage() {
       </div>
 
       {/* === Second Row: URL Input Full Width === */}
-      <div className="bg-white rounded-2xl shadow-lg p-6 mb-8 flex flex-col">
-        <label className="text-sm font-medium text-gray-600 mb-2">
+      <div className="bg-white/30 rounded-2xl shadow-lg p-6 mb-8 flex flex-col">
+        <label className="text-sm font-medium text-black mb-2">
           Document URL
         </label>
         <input
@@ -151,7 +151,7 @@ function UploadUrlPage() {
           onChange={(e) => setUrl(e.target.value)}
           placeholder="Enter document URL (e.g., https://example.com/document.pdf)"
           disabled={isLoading}
-          className="w-full rounded-lg border border-gray-300 p-3"
+          className="w-full rounded-lg border border-white/50 p-3"
         />
       </div>
 
@@ -163,7 +163,7 @@ function UploadUrlPage() {
           className={`px-10 py-3 rounded-lg font-semibold text-black shadow transition-all ${
             isLoading
               ? "bg-gray-400 cursor-not-allowed"
-              : "bg-green-200 text-green-500 hover:bg-green-500 hover:text-white"
+              : "bg-white/30 text-black hover:bg-white/50 hover:text-black"
           }`}
         >
           {isLoading ? "Uploading..." : "Submit"}

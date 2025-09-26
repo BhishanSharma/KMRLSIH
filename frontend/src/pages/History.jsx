@@ -36,7 +36,7 @@ const History = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 rounded-2xl py-10 px-4 mt-10 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-white/30 rounded-2xl py-10 px-4 mt-10 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-8">
@@ -50,7 +50,7 @@ const History = () => {
           </div>
           <Link
             to="/dashboard"
-            className="px-5 py-2 bg-green-200 text-green-500 rounded-md hover:bg-green-500 hover:text-green-200 transition-colors"
+            className="px-5 py-2 bg-white/30 text-black rounded-md hover:bg-white/50 hover:text-black transition-colors"
           >
             Back to Dashboard
           </Link>
@@ -68,8 +68,8 @@ const History = () => {
                 );
               const typeColor =
                 item.type === "view"
-                  ? "bg-green-100 text-green-600"
-                  : "bg-green-100 text-green-600";
+                  ? "bg-black-100 text-black"
+                  : "bg-black-100 text-black";
               const statusColor =
                 item.status === "completed"
                   ? "bg-green-100 text-green-600"
@@ -105,11 +105,11 @@ const History = () => {
             })
           ) : (
             <div className="text-center py-16">
-              <Clock className="mx-auto h-16 w-16 text-green-500 mb-4" />
-              <h3 className="text-lg font-medium text-green-500 mb-2">
+              <Clock className="mx-auto h-16 w-16 text-black mb-4" />
+              <h3 className="text-lg font-medium text-black mb-2">
                 No activity history yet
               </h3>
-              <p className="text-green-400 mb-6">
+              <p className="text-black mb-6">
                 Your document views and interactions will appear here.
               </p>
               <Link

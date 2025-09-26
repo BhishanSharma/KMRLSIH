@@ -92,6 +92,8 @@
   "createdAt": "Created At",
 
   "noDocuments": "No documents found matching your search.",
+  "noRecentDocuments": "No documents is uploaded yet!",
+
   "noNotifications": "No new notifications",
   "loadingDocuments": "Loading documents...",
   "documentProcessed": "Document processed successfully",
@@ -131,7 +133,6 @@
   "history": "History",
   "compliance": "Compliance",
   "auditLogs": "Audit Logs",
-
 
   "help": "Help",
   "faq": "FAQ",

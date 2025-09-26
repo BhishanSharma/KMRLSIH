@@ -34,7 +34,7 @@ function Sidebar() {
       className="
         fixed top-4 left-4
         h-[calc(100%-2rem)] w-64
-        bg-gray-50 backdrop-blur-xl
+        bg-white/30 backdrop-blur-xl
         rounded-2xl
         flex flex-col
         transition-all duration-300
@@ -56,7 +56,7 @@ function Sidebar() {
             className={({ isActive }) =>
               `flex items-center gap-3 p-3 rounded-lg transition-colors
               hover:bg-gray-100/60
-              ${isActive ? "bg-green-100 text-green-700" : "text-gray-700"}`
+              ${isActive ? "bg-blue-200 text-black" : "text-gray-700"}`
             }
           >
             {link.icon}
