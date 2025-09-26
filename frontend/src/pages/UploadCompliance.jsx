@@ -39,7 +39,7 @@ export default function UploadCompliance() {
   };
 
   return (
-    <div className="min-h-screen p-4 md:p-8 bg-gray-50 rounded-2xl mt-10 flex flex-col gap-10">
+    <div className="min-h-screen p-4 md:p-8 bg-white/30 rounded-2xl mt-10 flex flex-col gap-10">
       <header className="mb-6">
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
           Upload Compliance Rules
@@ -49,16 +49,15 @@ export default function UploadCompliance() {
         </p>
       </header>
 
-      <div className="w-full mx-auto p-8 bg-white rounded-2xl shadow-lg flex flex-col gap-6">
+      <div className="w-full mx-auto p-8 bg-white/35 rounded-2xl shadow-lg flex flex-col gap-6">
         {/* Document Selection */}
         <label className="text-gray-700 font-medium">Select Document</label>
         <input
           type="text"
           placeholder="Demo File"
-          
-          className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none  text-gray-900"
+          className="w-full px-4 py-3 rounded-xl border border-white/50 focus:outline-none  text-gray-900"
         />
-          {/*<option value="">
+        {/*<option value="">
             {loadingDocs ? "Loading documents..." : "Select Document"}
           </option>
           <option value="demo-file">Demo File</option>
@@ -124,7 +123,7 @@ export default function UploadCompliance() {
         {/* Submit Button */}
         <button
           onClick={handleSubmit}
-          className="self-start px-6 py-3 bg-green-200 text-green-500 rounded-xl hover:bg-green-600 hover:text-green-200 flex items-center gap-2 transition"
+          className="self-start px-6 py-3 bg-white/30 text-black rounded-xl hover:bg-white/50 hover:text-black flex items-center gap-2 transition"
         >
           <UploadCloud className="w-5 h-5" />
           Submit Compliance

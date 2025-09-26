@@ -53,7 +53,7 @@ const AboutPage = () => {
       role: "UI/UX Design Lead & Product Designer",
       team: "Frontend",
       image:
-        "https://img.freepik.com/free-photo/closeup-happy-pretty-indian-business-woman_1262-2258.jpg",
+        "https://media.licdn.com/dms/image/v2/D5603AQHjsDCZMXtlgA/profile-displayphoto-shrink_400_400/B56Zc5aJTNH8Ag-/0/1749014846132?e=1761782400&v=beta&t=iib6ZmsWeNbF6nVx-1K7GislyT10TvZljT6zk9joxpc",
       description:
         "Crafting intuitive and beautiful user interfaces with a focus on user-centered design principles. Expert in creating design systems that scale.",
       skills: [
@@ -206,13 +206,13 @@ const AboutPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 rounded-2xl mt-10 text-green-200">
+    <div className="min-h-screen bg-white/30 rounded-2xl mt-10 text-black">
       {/* Hero Section */}
       <section className="relative py-24 px-6 text-center">
-        <h1 className="text-5xl md:text-6xl text-green-600 font-bold mb-6">
+        <h1 className="text-5xl md:text-6xl text-black/80 font-bold mb-6">
           Meet Our Team
         </h1>
-        <p className=" text-green-500 max-w-8xl mx-auto mb-12">
+        <p className=" text-black/60 max-w-8xl mx-auto mb-12">
           A passionate group of developers, designers, and engineers working
           together to create innovative solutions.
         </p>
@@ -222,13 +222,13 @@ const AboutPage = () => {
           {stats.map((stat, idx) => (
             <div
               key={idx}
-              className="backdrop-blur-xl bg-white/30 border border-white/20 rounded-2xl p-6 flex flex-col items-center transition hover:scale-105"
+              className="backdrop-blur-xl bg-white/30 border border-white/50 rounded-2xl p-6 flex flex-col items-center transition hover:scale-105"
             >
-              <stat.icon className="h-8 w-8 mb-2 text-green-400" />
-              <div className="text-2xl font-bold text-green-500">
+              <stat.icon className="h-8 w-8 mb-2 text-black/80" />
+              <div className="text-2xl font-bold text-black/80">
                 {stat.value}
               </div>
-              <div className="text-green-500 text-sm">{stat.label}</div>
+              <div className="text-black/80 text-sm">{stat.label}</div>
             </div>
           ))}
         </div>
@@ -242,8 +242,8 @@ const AboutPage = () => {
             onClick={() => setActiveTab(tab)}
             className={`px-8 py-3 rounded-full font-medium transition ${
               activeTab === tab
-                ? "bg-green-700/90  text-green-200 shadow-lg"
-                : " text-green-500 hover:bg-green/50"
+                ? "bg-white/30  text-black/80 shadow"
+                : " text-black/60 hover:bg-white/50"
             }`}
           >
             {tab === "team"
@@ -259,10 +259,10 @@ const AboutPage = () => {
       {activeTab === "team" && (
         <section className="px-6 pb-20 max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl text-green-700 font-bold mb-4">
+            <h2 className="text-3xl text-black/80 font-bold mb-4">
               The Dream Team
             </h2>
-            <p className="text-green-500 max-w-8xl mx-auto">
+            <p className="text-black/60 max-w-8xl mx-auto">
               Each member brings unique expertise and passion to create
               something extraordinary together.
             </p>
@@ -272,12 +272,12 @@ const AboutPage = () => {
             {teamMembers.map((member, idx) => (
               <div
                 key={idx}
-                className="relative backdrop-blur-sm bg-green/3  bg-white/75 rounded-3xl p-8 transition hover:shadow-2xl hover:scale-105"
+                className="relative backdrop-blur-xl bg-green/3  bg-white/30 border-white/50 rounded-3xl p-8 transition hover:shadow hover:scale-105"
                 onMouseEnter={() => setHoveredMember(idx)}
                 onMouseLeave={() => setHoveredMember(null)}
               >
                 {/* Avatar */}
-                <div className="w-20 h-20 bg-white/20 flex items-center justify-center mb-6">
+                <div className="w-20 h-20 flex items-center justify-center mb-6">
                   <img
                     src={member.image}
                     alt={member.name}
@@ -286,11 +286,11 @@ const AboutPage = () => {
                   />
                 </div>
 
-                <h3 className="text-xl font-bold mb-1 text-green-700">
+                <h3 className="text-xl font-bold mb-1 text-black/80">
                   {member.name}
                 </h3>
-                <p className="text-green-500 mb-4">{member.role}</p>
-                <p className="text-green-500 text-sm mb-4">
+                <p className="text-black/60 mb-4">{member.role}</p>
+                <p className="text-black/60 text-sm mb-4">
                   {member.description}
                 </p>
 
@@ -299,7 +299,7 @@ const AboutPage = () => {
                   {member.skills.map((skill, i) => (
                     <span
                       key={i}
-                      className="px-3 py-1 bg-green-200 text-green-700 rounded-full text-xs"
+                      className="px-3 py-1 bg-white/30 text-black/80 rounded-full text-xs"
                     >
                       {skill}
                     </span>
@@ -308,7 +308,7 @@ const AboutPage = () => {
 
                 {/* Achievements */}
                 {hoveredMember === idx && (
-                  <div className="absolute inset-0 bg-green-700/90 p-6 rounded-3xl flex flex-col justify-center text-white transition-opacity transition-all">
+                  <div className="absolute inset-0 bg-white/85 p-6 rounded-3xl flex flex-col justify-center text-black transition-opacity transition-all">
                     <h4 className="font-semibold mb-2">Key Achievements</h4>
                     <ul className="text-sm space-y-1">
                       {member.achievements.map((ach, aidx) => (
@@ -329,10 +329,10 @@ const AboutPage = () => {
       {activeTab === "values" && (
         <section className="px-6 pb-20 max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4 text-green-600">
+            <h2 className="text-3xl font-bold mb-4 text-black/80">
               Our Core Values
             </h2>
-            <p className="text-green-500 max-w-8xl mx-auto">
+            <p className="text-black/60 max-w-8xl mx-auto">
               The principles that guide our work and shape our team culture.
             </p>
           </div>
@@ -341,15 +341,15 @@ const AboutPage = () => {
             {values.map((v, i) => (
               <div
                 key={i}
-                className="backdrop-blur-sm bg-green/30 border border-green-400 rounded-2xl p-8 flex flex-col items-center text-center hover:scale-105 transition"
+                className="backdrop-blur-sm bg-green/30 border border-white/50 rounded-2xl p-8 flex flex-col items-center text-center hover:scale-105 transition"
               >
                 <div className="w-16 h-16 rounded-2xl bg-white/20 flex items-center justify-center mb-4">
-                  <v.icon className="h-8 w-8 text-green-400" />
+                  <v.icon className="h-8 w-8 text-black/80" />
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-green-500">
+                <h3 className="text-xl font-bold mb-2 text-black/80">
                   {v.title}
                 </h3>
-                <p className="text-green-500">{v.description}</p>
+                <p className="text-black/60">{v.description}</p>
               </div>
             ))}
           </div>
@@ -359,22 +359,22 @@ const AboutPage = () => {
       {/* Story Section */}
       {activeTab === "story" && (
         <section className="px-6 pb-20 max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-6 text-green-600">Our Story</h2>
-          <p className="mb-6 text-green-500">
+          <h2 className="text-3xl font-bold mb-6 text-black/80">Our Story</h2>
+          <p className="mb-6 text-black/60">
             From individual expertise to collective excellence.
           </p>
-          <div className="backdrop-blur-sm bg-white/30 border border-white/20 rounded-3xl p-10 shadow-md">
-            <p className="text-green-500 mb-4">
+          <div className="backdrop-blur-xl bg-white/30 border border-white/20 rounded-3xl p-10 shadow-md">
+            <p className="text-black/80 mb-4">
               Our team came together with a shared vision: to build innovative
               digital solutions that make a real difference. Collaboration and
               creativity drive everything we do.
             </p>
-            <p className="text-green-500 mb-4">
+            <p className="text-black/80 mb-4">
               With diverse backgrounds spanning frontend development, backend
               architecture, AI/ML engineering, and design, we bring a unique
               perspective to every project.
             </p>
-            <blockquote className="text-green-500 italic border-l-4 border-green-200 pl-4 mt-4">
+            <blockquote className="text-black/80 italic border-l-4 border-white/50 pl-4 mt-4">
               "Great things are done by a series of small things brought
               together."
             </blockquote>

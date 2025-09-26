@@ -114,7 +114,7 @@ const History = () => {
               </p>
               <Link
                 to="/dashboard"
-                className="inline-flex items-center px-5 py-2  bg-green-200 text-green-500 rounded-md hover:bg-green-500 hover:text-green-200 transition-colors"
+                className="inline-flex items-center px-5 py-2  bg-white/30 text-black rounded-md hover:bg-white/50 hover:text-black transition-colors"
               >
                 Browse Documents
               </Link>
