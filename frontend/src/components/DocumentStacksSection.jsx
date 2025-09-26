@@ -126,7 +126,8 @@ const DocumentStacksSection = ({ userId }) => {
     try {
       // Mark document as viewed
       if (userId && document.id) {
-        console.log("Marking document as viewed:", document.id);
+        console.log("Marking document as viewed:", document.id[0] || document.name);
+        console.log("User ID:", userId);
         await markViewed(userId, document.id);
         
         // Update the document in all stacks to reflect viewed status

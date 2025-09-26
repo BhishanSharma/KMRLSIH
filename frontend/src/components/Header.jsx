@@ -1,26 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Search, Bell, User, Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { searchDocuments } from "../api/services"; // ✅ import your backend search function
 
 const Header = ({ sidebarOpen, setSidebarOpen }) => {
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const { language, setLanguage, t } = useLanguage();
   const { user, logout } = useAuth();
 
-  const handleSearch = () => {
-    if (query.trim() === "") return;
-    console.log("Searching for:", query);
-  };
+  // ✅ Debounced search effect
+  useEffect(() => {
+    if (!query.trim()) {
+      setResults([]);
+      return;
+    }
 
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") handleSearch();
-  };
+    const delayDebounce = setTimeout(async () => {
+      setLoading(true);
+      try {
+        const data = await searchDocuments(query);
+        setResults(data); // store results
+      } catch (err) {
+        console.error("Search error:", err);
+      } finally {
+        setLoading(false);
+      }
+    }, 500); // wait 500ms after typing
+
+    return () => clearTimeout(delayDebounce);
+  }, [query]);
 
   const handleSignOut = () => {
     logout();
@@ -77,28 +93,19 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
           </button>
 
           {/* Search */}
-          <div className="relative  flex items-center">
+          <div className="relative flex items-center">
             <input
               type="text"
               placeholder="Search..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              onKeyDown={handleKeyDown}
               className="w-48 sm:w-64 lg:w-80 xl:w-96 px-3 py-1.5 pl-9 
-           text-sm sm:text-base border border-gray-200 
-           rounded-lg focus:outline-none focus:ring-2 
-           focus:ring-black-50 transition-all"
+                text-sm sm:text-base border border-gray-200 
+                rounded-lg focus:outline-none focus:ring-2 
+                focus:ring-black-50 transition-all"
             />
             <Search className="w-4 h-4 sm:w-5 sm:h-5 absolute left-3 text-gray-400" />
           </div>
-
-          <button
-            type="button"
-            onClick={handleSearch}
-            className="px-3 sm:px-4 py-1.5 sm:py-2 bg-green-100 text-green-500 text-sm rounded-lg hover:bg-green-500 hover:text-green-200 transition-colors "
-          >
-            Search
-          </button>
         </div>
 
         {/* Right side - Actions */}
@@ -202,6 +209,29 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
           </div>
         </div>
       </header>
+
+      {/* 🔎 Results Dropdown under search box */}
+      {query && (
+        <div className="absolute left-16 mt-16 w-80 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+          {loading ? (
+            <p className="p-3 text-gray-500 text-sm">Searching...</p>
+          ) : results.length > 0 ? (
+            <ul>
+              {results.map((doc) => (
+                <li
+                  key={doc.id}
+                  className="p-3 text-sm hover:bg-gray-100 cursor-pointer"
+                  onClick={() => navigate(`/documents/${doc.id}`)}
+                >
+                  {doc.name}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="p-3 text-gray-500 text-sm">No results found</p>
+          )}
+        </div>
+      )}
 
       {/* Overlay to close dropdown */}
       {isUserDropdownOpen && (
