@@ -17,11 +17,10 @@ export const categorizeDocuments = (documents) => {
     const normalizedDoc = {
       id: doc.id || doc.doc_id,
       title: doc.title || "Untitled Document",
-      cloudinaryUrl: doc.cloudinary_url || "#",
-      url: doc.url || doc.cloudinary_url || "#",
+      cloudinaryUrl: doc.url,
+      url: doc.url ,
       priority: doc.priority || "normal",
       viewed: doc.viewed || false,
-      marked_as_read: doc.marked_as_read || false,
     };
 
     stacks.stack1.push(normalizedDoc); // All documents

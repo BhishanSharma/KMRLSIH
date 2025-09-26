@@ -6,7 +6,7 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg, #0f2b4a 0%, #0f2b4a 100%);
-  clip-path: polygon(0 0, 50% 0, 60% 100%, 0 100%);
+  clip-path: polygon(0 0, 50% 0, 70% 100%, 0 100%);
   z-index: 1;
 }
 .bg-split-layer::after {
