@@ -9,6 +9,8 @@ const History = () => {
   const [loading, setLoading] = useState(true);
   const { user } = useAuth();
 
+  console.log("User in History:", user);
+
   useEffect(() => {
     loadHistory();
   }, []);
@@ -16,7 +18,7 @@ const History = () => {
   const loadHistory = async () => {
     try {
       setLoading(true);
-      const historyData = await getUserHistory(user.id);
+      const historyData = await getUserHistory(user);
       setHistory(historyData);
     } catch (error) {
       console.error("Failed to load history:", error);

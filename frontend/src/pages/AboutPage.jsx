@@ -27,6 +27,8 @@ const AboutPage = () => {
       name: "Himanshu Saxena",
       role: "Frontend Team Lead & Solutions Architect",
       team: "Frontend",
+      image:
+        "https://media.licdn.com/dms/image/v2/D4D03AQHnN4nwaclN8g/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1701354014775?e=1761782400&v=beta&t=2ma8veJ28ZaQM5JWMsO30cFzJ3S3Azj-89HQwGHD2A8",
       description:
         "Leading the frontend architecture with expertise in modern web technologies and API integration. Passionate about creating seamless user experiences and scalable solutions.",
       skills: [
@@ -34,8 +36,12 @@ const AboutPage = () => {
         "TypeScript",
         "API Integration",
         "System Architecture",
+        "Team Leadership",
       ],
       icon: Layers,
+      color: "from-blue-500 to-cyan-500",
+      bgColor: "bg-blue-50",
+      textColor: "text-blue-600",
       achievements: [
         "Led 15+ successful projects",
         "Mentored 8 developers",
@@ -45,16 +51,22 @@ const AboutPage = () => {
     {
       name: "Shanvi",
       role: "UI/UX Design Lead & Product Designer",
-      team: "Design",
+      team: "Frontend",
+      image:
+        "https://img.freepik.com/free-photo/closeup-happy-pretty-indian-business-woman_1262-2258.jpg",
       description:
         "Crafting intuitive and beautiful user interfaces with a focus on user-centered design principles. Expert in creating design systems that scale.",
       skills: [
         "UI/UX Design",
         "Design Systems",
+        "User Research",
         "Prototyping",
         "Visual Design",
       ],
       icon: Palette,
+      color: "from-pink-500 to-rose-500",
+      bgColor: "bg-pink-50",
+      textColor: "text-pink-600",
       achievements: [
         "Designed 20+ user interfaces",
         "98% user satisfaction",
@@ -65,14 +77,100 @@ const AboutPage = () => {
       name: "Shwe Win Aung",
       role: "Frontend Developer & Animation Specialist",
       team: "Frontend",
+      image:
+        "https://media.licdn.com/dms/image/v2/D5603AQFlTg4DVCWcVQ/profile-displayphoto-scale_400_400/B56ZlMGmzSHcAg-/0/1757918425224?e=1761782400&v=beta&t=mEJmJb2bOelCPwgPKQrnaUC5xrki_kFWfviK_HE8BEI",
       description:
         "Bringing designs to life with smooth animations and interactive experiences. Specializes in modern frontend frameworks and creative web technologies.",
-      skills: ["React.js", "CSS Animations", "Framer Motion", "Three.js"],
+      skills: [
+        "React.js",
+        "TailwindCSS",
+        "Framer Motion",
+        "GSAP",
+        "Clean Code",
+        "API",
+        "MULTILANGUAGE",
+      ],
       icon: Zap,
+      color: "from-purple-500 to-indigo-500",
+      bgColor: "bg-purple-50",
+      textColor: "text-purple-600",
       achievements: [
         "Created 50+ animations",
         "Improved UX by 40%",
         "Built interactive demos",
+      ],
+    },
+    {
+      name: "Bhishan Sharma",
+      role: "AI/ML Engineer & Workflow Architect",
+      team: "Backend",
+      image: "https://avatars.githubusercontent.com/u/186663682?v=4",
+      description:
+        "Designing and implementing intelligent systems with advanced AI workflows. Expert in machine learning pipelines and automation technologies.",
+      skills: [
+        "Python",
+        "Machine Learning",
+        "AI Workflows",
+        "MLOps",
+        "Data Science",
+      ],
+      icon: Cpu,
+      color: "from-green-500 to-emerald-500",
+      bgColor: "bg-green-50",
+      textColor: "text-green-600",
+      achievements: [
+        "Built 12 ML models",
+        "Automated 80% workflows",
+        "Published 3 research papers",
+      ],
+    },
+    {
+      name: "Akarsh Mishra",
+      role: "Data Engineer & Integration Specialist",
+      team: "Backend",
+      image: "https://avatars.githubusercontent.com/u/155228025?v=4",
+      description:
+        "Managing complex data pipelines and integration workflows using n8n and various data sources. Expert in ETL processes and data transformation.",
+      skills: [
+        "Data Engineering",
+        "n8n Automation",
+        "ETL Pipelines",
+        "API Integration",
+        "Data Analytics",
+      ],
+      icon: Database,
+      color: "from-orange-500 to-amber-500",
+      bgColor: "bg-orange-50",
+      textColor: "text-orange-600",
+      achievements: [
+        "Processed 10TB+ data",
+        "Integrated 25+ APIs",
+        "Reduced processing time by 60%",
+      ],
+    },
+    {
+      name: "Himanshu Jha",
+      role: "Backend Developer & Database Architect",
+      team: "Backend",
+      image:
+        "https://media.licdn.com/dms/image/v2/D5635AQGDA7SVVyrZpA/profile-framedphoto-shrink_400_400/B56ZeR1T3VHEAk-/0/1750498361118?e=1759442400&v=beta&t=A5oJ1tSZZNyoUTay46vZ-TPFbKdWClHNwUvqmJYqAss",
+      description:
+        "Building robust backend systems with focus on database optimization and API development. Expert in scalable server architectures and data modeling.",
+      skills: [
+        "Node.js",
+        "Database Design",
+        "API Development",
+        "System Optimization",
+        "Cloud Services",
+      ],
+      icon: Code,
+      color: "from-teal-500 to-cyan-500",
+      bgColor: "bg-teal-50",
+      textColor: "text-teal-600",
+      achievements: [
+        "Optimized DB by 70%",
+        "Built 100+ APIs",
+        "Managed 5 production systems",
       ],
     },
   ];
@@ -144,7 +242,7 @@ const AboutPage = () => {
             onClick={() => setActiveTab(tab)}
             className={`px-8 py-3 rounded-full font-medium transition ${
               activeTab === tab
-                ? "bg-green-500 text-green-200 shadow-lg"
+                ? "bg-green-700/90  text-green-200 shadow-lg"
                 : " text-green-500 hover:bg-green/50"
             }`}
           >
@@ -174,20 +272,25 @@ const AboutPage = () => {
             {teamMembers.map((member, idx) => (
               <div
                 key={idx}
-                className="relative backdrop-blur-sm bg-green/30 border border-green-500 rounded-3xl p-8 transition hover:shadow-2xl hover:scale-105"
+                className="relative backdrop-blur-sm bg-green/3  bg-white/75 rounded-3xl p-8 transition hover:shadow-2xl hover:scale-105"
                 onMouseEnter={() => setHoveredMember(idx)}
                 onMouseLeave={() => setHoveredMember(null)}
               >
                 {/* Avatar */}
-                <div className="w-20 h-20 rounded-2xl bg-white/20 flex items-center justify-center mb-6">
-                  <member.icon className="h-10 w-10 text-green-400" />
+                <div className="w-20 h-20 bg-white/20 flex items-center justify-center mb-6">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    srcset=""
+                    className="rounded-full"
+                  />
                 </div>
 
-                <h3 className="text-xl font-bold mb-1 text-green-500">
+                <h3 className="text-xl font-bold mb-1 text-green-700">
                   {member.name}
                 </h3>
-                <p className="text-green-400 mb-4">{member.role}</p>
-                <p className="text-green-400 text-sm mb-4">
+                <p className="text-green-500 mb-4">{member.role}</p>
+                <p className="text-green-500 text-sm mb-4">
                   {member.description}
                 </p>
 
@@ -196,7 +299,7 @@ const AboutPage = () => {
                   {member.skills.map((skill, i) => (
                     <span
                       key={i}
-                      className="px-3 py-1 bg-green-200 text-green-500 rounded-full text-xs"
+                      className="px-3 py-1 bg-green-200 text-green-700 rounded-full text-xs"
                     >
                       {skill}
                     </span>
@@ -205,7 +308,7 @@ const AboutPage = () => {
 
                 {/* Achievements */}
                 {hoveredMember === idx && (
-                  <div className="absolute inset-0 bg-green-500/85 p-6 rounded-3xl flex flex-col justify-center text-white transition-opacity">
+                  <div className="absolute inset-0 bg-green-700/90 p-6 rounded-3xl flex flex-col justify-center text-white transition-opacity transition-all">
                     <h4 className="font-semibold mb-2">Key Achievements</h4>
                     <ul className="text-sm space-y-1">
                       {member.achievements.map((ach, aidx) => (

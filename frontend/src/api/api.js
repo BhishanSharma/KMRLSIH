@@ -5,6 +5,11 @@ const api = axios.create({
   // baseURL: "https://51.20.32.249/", // Fixed: removed double slash
   baseURL: "https://lyricalcoder-sih.hf.space/", // Fixed: removed double slash
   timeout: 30000, // 30 seconds timeout
+
+  baseURL: "http://51.20.32.249/", // change to your FastAPI base URL
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
 // Add request interceptor to handle different content types
