@@ -58,11 +58,56 @@ export const uploadUrl = async (urlData) => {
   return response.data;
 };
 
+// Updated uploadFile function in services.js
 export const uploadFile = async (formData) => {
-  const response = await api.post("/documents/file", formData, {
-    headers: { "Content-Type": "multipart/form-data" },
-  });
-  return response.data;
+  try {
+    console.log('Starting file upload...');
+    
+    // Log FormData contents for debugging
+    for (let pair of formData.entries()) {
+      console.log(`${pair[0]}:`, pair[1]);
+    }
+    
+    const response = await api.post('/documents/file', formData, {
+      // Don't set Content-Type - let axios handle it for FormData
+      timeout: 60000, // Increase timeout to 60 seconds for file uploads
+    });
+    
+    console.log('Upload successful:', response.data);
+    return { success: true, data: response.data };
+    
+  } catch (error) {
+    console.error('Upload API error:', error);
+    
+    let errorMessage = 'Upload failed';
+    
+    if (error.response) {
+      // Server responded with error status
+      const status = error.response.status;
+      const errorData = error.response.data;
+      
+      if (status === 500) {
+        errorMessage = `Server error (500): ${errorData?.detail || 'Internal server error'}`;
+      } else if (status === 400) {
+        errorMessage = `Bad request (400): ${errorData?.detail || 'Invalid request'}`;
+      } else if (status === 422) {
+        errorMessage = `Validation error (422): ${errorData?.detail || 'Invalid data'}`;
+      } else {
+        errorMessage = `Server error (${status}): ${errorData?.detail || error.response.statusText}`;
+      }
+    } else if (error.request) {
+      // Request was made but no response received
+      errorMessage = 'No response from server - please check your connection';
+    } else if (error.code === 'ECONNABORTED') {
+      // Timeout error
+      errorMessage = 'Upload timeout - file may be too large or connection is slow';
+    } else {
+      // Something else happened
+      errorMessage = `Upload error: ${error.message}`;
+    }
+    
+    throw new Error(errorMessage);
+  }
 };
 
 export const getSummary = async (doc_id) => {
@@ -119,7 +164,6 @@ export const getRoot = async () => {
   const response = await api.get("/");
   return response.data;
 };
-
 
 export const getDepartmentName = async (dept_id) => {
   const response = await api.get("/auth/dept_name", {
