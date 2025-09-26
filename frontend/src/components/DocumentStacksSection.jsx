@@ -107,22 +107,33 @@ const DocumentStacksSection = ({ userId }) => {
     fetchDocuments();
   }, [userId]);
 
+  // Enhanced handleOpenDocument function
   const handleOpenDocument = async (document) => {
     console.log("Opening document:", document);
     
+    // Validate document object
+    if (!document || !document.id) {
+      console.error("Invalid document object:", document);
+      return;
+    }
+    
     // Set processing state for this specific document
-    setProcessingStates((p) => ({ ...p, [`view_${document.id}`]: true }));
+    setProcessingStates((prev) => ({ 
+      ...prev, 
+      [`view_${document.id}`]: true 
+    }));
     
     try {
-      // Always call markViewed when opening a document
+      // Mark document as viewed
       if (userId && document.id) {
+        console.log("Marking document as viewed:", document.id);
         await markViewed(userId, document.id);
         
-        // Update the document in all stacks
+        // Update the document in all stacks to reflect viewed status
         setDocumentStacks((prev) => {
           const newStacks = { ...prev };
-          Object.keys(newStacks).forEach((key) => {
-            newStacks[key] = newStacks[key].map((doc) => 
+          Object.keys(newStacks).forEach((stackKey) => {
+            newStacks[stackKey] = newStacks[stackKey].map((doc) => 
               doc.id === document.id 
                 ? { ...doc, viewed: true, marked_as_read: true }
                 : doc
@@ -132,21 +143,36 @@ const DocumentStacksSection = ({ userId }) => {
         });
       }
       
-      // Open the document in full page view
+      // Open the PDF viewer/document viewer overlay
+      console.log("Opening document viewer for:", document.name || document.title);
+      setDocumentViewerPage({
+        isOpen: true,
+        document: {
+          ...document,
+          viewed: true,
+          marked_as_read: true
+        },
+      });
+      
+    } catch (err) {
+      console.error("Error handling document open:", err);
+      // Still open the viewer even if marking as viewed fails
       setDocumentViewerPage({
         isOpen: true,
         document: document,
       });
-      
-    } catch (err) {
-      console.error("Error marking document as viewed:", err);
     } finally {
-      setProcessingStates((p) => ({ ...p, [`view_${document.id}`]: false }));
+      // Clear processing state
+      setProcessingStates((prev) => ({ 
+        ...prev, 
+        [`view_${document.id}`]: false 
+      }));
     }
   };
 
-  // Handle document viewer page toggle
+  // Handle document viewer page close
   const closeDocumentViewerPage = () => {
+    console.log("Closing document viewer");
     setDocumentViewerPage({
       isOpen: false,
       document: null,
@@ -155,6 +181,7 @@ const DocumentStacksSection = ({ userId }) => {
 
   // Handle summary drawer toggle
   const handleGetSummary = (document) => {
+    console.log("Opening summary for document:", document.id);
     setSummaryDrawer({
       isOpen: true,
       docId: document.id,
@@ -242,20 +269,24 @@ const DocumentStacksSection = ({ userId }) => {
         </div>
       </section>
 
-      {/* Document Viewer Page */}
-      <DocumentViewerPage
-        isOpen={documentViewerPage.isOpen}
-        onClose={closeDocumentViewerPage}
-        document={documentViewerPage.document}
-        userId={userId}
-      />
+      {/* Document Viewer Page - PDF Viewer Overlay */}
+      {documentViewerPage.isOpen && (
+        <DocumentViewerPage
+          isOpen={documentViewerPage.isOpen}
+          onClose={closeDocumentViewerPage}
+          document={documentViewerPage.document}
+          userId={userId}
+        />
+      )}
 
       {/* Summary Drawer */}
-      <SummaryDrawer
-        isOpen={summaryDrawer.isOpen}
-        onClose={closeSummaryDrawer}
-        docId={summaryDrawer.docId}
-      />
+      {summaryDrawer.isOpen && (
+        <SummaryDrawer
+          isOpen={summaryDrawer.isOpen}
+          onClose={closeSummaryDrawer}
+          docId={summaryDrawer.docId}
+        />
+      )}
     </>
   );
 };
