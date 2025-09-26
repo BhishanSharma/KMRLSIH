@@ -120,7 +120,6 @@ export const getRoot = async () => {
   return response.data;
 };
 
-
 export const getDepartmentName = async (dept_id) => {
   const response = await api.get("/auth/dept_name", {
     params: { dept_id },

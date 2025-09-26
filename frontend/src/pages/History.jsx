@@ -69,7 +69,7 @@ const History = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 rounded-2xl py-10 px-4 mt-10 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-white/30 rounded-2xl py-10 px-4 mt-10 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-8">
@@ -81,12 +81,77 @@ const History = () => {
           </div>
           <Link
             to="/dashboard"
-            className="px-5 py-2 bg-green-200 text-green-500 rounded-md hover:bg-green-500 hover:text-green-200 transition-colors"
+            className="px-5 py-2 bg-white/30 text-black rounded-md hover:bg-white/50 hover:text-black transition-colors"
           >
             Back to Dashboard
           </Link>
         </div>
 
+        {/* History Cards */}
+        <div className="grid gap-6">
+          {history.length > 0 ? (
+            history.map((item, idx) => {
+              const icon =
+                item.type === "view" ? (
+                  <Eye className="w-5 h-5" />
+                ) : (
+                  <Download className="w-5 h-5" />
+                );
+              const typeColor =
+                item.type === "view"
+                  ? "bg-black-100 text-black"
+                  : "bg-black-100 text-black";
+              const statusColor =
+                item.status === "completed"
+                  ? "bg-green-100 text-green-600"
+                  : "bg-yellow-100 text-yellow-600";
+              return (
+                <div
+                  key={idx}
+                  className="backdrop-blur-sm bg-white/30 border border-white/20 rounded-2xl p-6 flex justify-between items-center hover:shadow-lg transition-all"
+                >
+                  <div className="flex items-center space-x-4">
+                    <div
+                      className={`p-3 rounded-lg ${typeColor} flex items-center justify-center`}
+                    >
+                      {icon}
+                    </div>
+                    <div>
+                      <h3 className="text-green-200 font-medium">
+                        {item.documentName}
+                      </h3>
+                      <p className="text-green-300 text-sm">
+                        {item.action} •{" "}
+                        {new Date(item.timestamp).toLocaleDateString()}
+                      </p>
+                    </div>
+                  </div>
+                  <span
+                    className={`px-3 py-1 rounded-full text-xs font-medium ${statusColor}`}
+                  >
+                    {item.status}
+                  </span>
+                </div>
+              );
+            })
+          ) : (
+            <div className="text-center py-16">
+              <Clock className="mx-auto h-16 w-16 text-black mb-4" />
+              <h3 className="text-lg font-medium text-black mb-2">
+                No activity history yet
+              </h3>
+              <p className="text-black mb-6">
+                Your document views and interactions will appear here.
+              </p>
+              <Link
+                to="/dashboard"
+                className="inline-flex items-center px-5 py-2  bg-green-200 text-green-500 rounded-md hover:bg-green-500 hover:text-green-200 transition-colors"
+              >
+                Browse Documents
+              </Link>
+            </div>
+          )}
+        </div>
         {/* Table */}
         {history.length > 0 ? (
           <div className="overflow-x-auto rounded-2xl shadow-md">

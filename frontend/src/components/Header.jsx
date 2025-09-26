@@ -4,7 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { searchDocuments } from "../api/services"; // ✅ import your backend search function
+import { searchDocuments } from "../api/services";
+import { Sun, Moon } from "lucide-react";
 
 const Header = ({ sidebarOpen, setSidebarOpen }) => {
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
@@ -16,7 +17,20 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
   const { language, setLanguage, t } = useLanguage();
   const { user, logout } = useAuth();
 
-  // ✅ Debounced search effect
+  //dark mode
+
+  const [darkMode, setDarkMode] = useState(
+    localStorage.getItem("darkMode") === "true"
+  );
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (darkMode) root.classList.add("dark");
+    else root.classList.remove("dark");
+    localStorage.setItem("darkMode", darkMode);
+  }, [darkMode]);
+
+  // Debounced search effect
   useEffect(() => {
     if (!query.trim()) {
       setResults([]);
@@ -71,7 +85,8 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
           w-[calc(100%-2rem)] lg:w-[calc(100%-20rem)]
           bg-gray/90 backdrop-blur-xl
           px-4 py-3 sm:px-6 sm:py-4
-          bg-gray-50
+          bg-white/30
+        
           rounded-2xl  
           z-40 flex justify-between items-center
           transition-all duration-300
@@ -111,15 +126,29 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
         {/* Right side - Actions */}
         <div className="flex items-center gap-2 sm:gap-3">
           {/* Notifications */}
+          {/* Notifications */}
           <button
             onClick={handlebellclick}
             className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
             aria-label="Notifications"
           >
-            <Bell size={20} className="text-gray-700" />
+            <Bell size={20} className="text-gray-700 dark:text-gray-200" />
             <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
               3
             </span>
+          </button>
+
+          {/* Dark Mode Toggle */}
+          <button
+            onClick={() => setDarkMode(!darkMode)}
+            className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+            aria-label="Toggle Dark Mode"
+          >
+            {darkMode ? (
+              <Sun size={20} className="text-yellow-400" />
+            ) : (
+              <Moon size={20} className="text-gray-700 dark:text-gray-200" />
+            )}
           </button>
 
           {/* User Dropdown */}
