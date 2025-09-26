@@ -52,14 +52,13 @@ export default function UploadCompliance() {
       <div className="w-full mx-auto p-8 bg-white rounded-2xl shadow-lg flex flex-col gap-6">
         {/* Document Selection */}
         <label className="text-gray-700 font-medium">Select Document</label>
-        <select
-          value={compliance.doc_id}
-          onChange={(e) =>
-            setCompliance({ ...compliance, docId: e.target.value })
-          }
+        <input
+          type="text"
+          placeholder="Demo File"
+          
           className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none  text-gray-900"
-        >
-          <option value="">
+        />
+          {/*<option value="">
             {loadingDocs ? "Loading documents..." : "Select Document"}
           </option>
           <option value="demo-file">Demo File</option>
@@ -70,7 +69,7 @@ export default function UploadCompliance() {
                 </option>
               ))
             : !loadingDocs && <option disabled>No documents found</option>}
-        </select>
+        </select>*/}
 
         {/* Deadline */}
         <label className="text-gray-700 font-medium">Deadline</label>
