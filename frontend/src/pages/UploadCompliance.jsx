@@ -21,7 +21,7 @@ export default function UploadCompliance() {
 
     const fetchDocuments = async () => {
       try {
-        const docs = await listDocuments(user.user_id);
+        const docs = await listDocuments(user.id);
         setDocuments(docs);
       } catch (err) {
         console.error("Failed to fetch documents:", err);
@@ -31,7 +31,7 @@ export default function UploadCompliance() {
     };
 
     fetchDocuments();
-  }, [user?.user_id]);
+  }, [user?.id]);
 
   const handleSubmit = () => {
     console.log("Upload Compliance:", compliance);
@@ -53,7 +53,7 @@ export default function UploadCompliance() {
         {/* Document Selection */}
         <label className="text-gray-700 font-medium">Select Document</label>
         <select
-          value={compliance.docId}
+          value={compliance.doc_id}
           onChange={(e) =>
             setCompliance({ ...compliance, docId: e.target.value })
           }
