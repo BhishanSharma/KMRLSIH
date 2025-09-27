@@ -56,7 +56,7 @@ function Sidebar() {
             className={({ isActive }) =>
               `flex items-center gap-3 p-3 rounded-lg transition-colors
               hover:bg-gray-100/60
-              ${isActive ? "bg-blue-200 text-black" : "text-gray-700"}`
+              ${isActive ? "bg-white/50 text-black" : "text-gray-700"}`
             }
           >
             {link.icon}

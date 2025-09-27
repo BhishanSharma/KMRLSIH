@@ -101,7 +101,7 @@ const Analytics = ({ userRole = "admin", userDepartment = "Engineering" }) => {
   }, [userRole, userDepartment, timeRange]);
 
   const StatCard = ({ title, value, icon: Icon, color }) => (
-    <div className="bg-white rounded-2xl shadow p-6 flex justify-between items-center transition hover:shadow-lg">
+    <div className="bg-white/50 rounded-2xl shadow p-6 flex justify-between items-center transition hover:shadow-lg">
       <div>
         <p className="text-sm text-gray-500">{title}</p>
         <p className="text-2xl font-bold text-gray-900">{value}</p>
@@ -116,7 +116,7 @@ const Analytics = ({ userRole = "admin", userDepartment = "Engineering" }) => {
   );
 
   const ChartCard = ({ title, children }) => (
-    <div className="bg-white rounded-2xl shadow p-6 transition hover:shadow-lg">
+    <div className="bg-white/50 rounded-2xl shadow p-6 transition hover:shadow-lg">
       <h3 className="font-semibold text-gray-900 mb-4">{title}</h3>
       {children}
     </div>
@@ -135,17 +135,17 @@ const Analytics = ({ userRole = "admin", userDepartment = "Engineering" }) => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center  bg-gray-50">
+      <div className="min-h-screen flex items-center justify-center  bg-white/50">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto mb-4"></div>
-          <p className="text-gray-500">Loading analytics...</p>
+          <p className="text-white/50">Loading analytics...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen rounded-2xl mt-10 bg-gray-50 py-8 px-4 lg:px-12">
+    <div className="min-h-screen rounded-2xl mt-10 bg-white/50 py-8 px-4 lg:px-12">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-8 gap-4">
@@ -284,7 +284,7 @@ const Analytics = ({ userRole = "admin", userDepartment = "Engineering" }) => {
                 return (
                   <div
                     key={dept.name}
-                    className="bg-white rounded-2xl p-4 shadow hover:shadow-lg transition cursor-pointer"
+                    className="bg-white/50 rounded-2xl p-4 shadow hover:shadow-lg transition cursor-pointer"
                   >
                     <div className="flex items-center justify-between mb-2">
                       <Icon className="h-6 w-6 text-blue-500" />
