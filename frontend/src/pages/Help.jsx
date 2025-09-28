@@ -50,134 +50,137 @@ export default function Help() {
   );
 
   return (
-    <div className="px-6 py-10 max-w-8xl h-full mx-auto">
-      {/* Header */}
-      <header className="text-center mb-12">
-        <img
-          src="help.png"
-          alt="Kochi Metro"
-          className="mx-auto mb-4 w-full h-80 object-contain"
-        />
-        <h1 className="text-3xl font-heading text-white/50 mb-2">
-          KMRLSIH — Smart Engine of Directives
-        </h1>
-        <p className="text-white/50">
-          A folder-structured guide for setup, usage & deployment.
-        </p>
-      </header>
-
-      {/* Explorer-like Sections */}
-      <div className="bg-white/30 p-6 rounded-lg shadow-md border border-white/50">
-        <Section id="intro" title="🤖 Introduction">
-          <p>
-            KMRLSIH converts fragmented and multilingual documents into{" "}
-            <strong className="text-black">
-              searchable, prioritized directives
-            </strong>
-            .
+    <div className="px-6 py-10 bg-white/30 ms-6 max-w-8xl mt-10 rounded-4xl h-full mx-auto">
+      <div className=" bg-neutral-300/20 p-10  rounded-4xl ">
+        {/* Header */}
+        <header className="text-center mb-12">
+          <img
+            src="help.png"
+            alt="Kochi Metro"
+            className="mx-auto mb-4 w-full h-80 object-contain"
+          />
+          <h1 className="text-3xl font-heading font-extrabold  text-black/70 mb-2">
+            KMRLSIH — Smart Engine of Directives
+          </h1>
+          <p className="text-black/50">
+            A folder-structured guide for setup, usage & deployment.
           </p>
-          <ul className="list-disc ml-6 space-y-1 marker:text-black">
-            <li>Ingest → WhatsApp, Email, SharePoint, uploads</li>
-            <li>Process → OCR → NLP → Semantic chunking → Summarization</li>
-            <li>Classify → Priority detection + notifications</li>
-            <li>Deliver → Role-based dashboards (EN / ML)</li>
-          </ul>
-        </Section>
+        </header>
 
-        <Section id="tech" title="⚙️ Tech Stack">
-          <ul className="list-disc ml-6 space-y-1 marker:text-black">
-            <li>Frontend: React (Vite)</li>
-            <li>Backend: FastAPI (Python)</li>
-            <li>AI/ML: OCR, NLP, Transformers, FAISS</li>
-            <li>Database: PostgreSQL, FAISS</li>
-            <li>Cache: Redis</li>
-            <li>Notifications: EmailJS</li>
-            <li>Deployment: Docker / Compose</li>
-          </ul>
-        </Section>
+        {/* Explorer-like Sections */}
+        <div className="bg-white/30 p-6 rounded-4xl shadow-md border border-white/50">
+          <Section id="intro" title="🤖 Introduction">
+            <p>
+              KMRLSIH converts fragmented and multilingual documents into{" "}
+              <strong className="text-black">
+                searchable, prioritized directives
+              </strong>
+              .
+            </p>
+            <ul className="list-disc ml-6 space-y-1 marker:text-black">
+              <li>Ingest → WhatsApp, Email, SharePoint, uploads</li>
+              <li>Process → OCR → NLP → Semantic chunking → Summarization</li>
+              <li>Classify → Priority detection + notifications</li>
+              <li>Deliver → Role-based dashboards (EN / ML)</li>
+            </ul>
+          </Section>
 
-        <Section id="features" title="🔋 Features">
-          <ul className="list-disc ml-6 space-y-1 marker:text-black">
-            <li>Unified Upload Hub</li>
-            <li>Five-stage AI pipeline</li>
-            <li>Priority classification + alerts</li>
-            <li>Bilingual UI</li>
-            <li>Fast vector search (FAISS + Redis)</li>
-            <li>Role-based dashboards</li>
-            <li>Audit logging</li>
-          </ul>
-        </Section>
+          <Section id="tech" title="⚙️ Tech Stack">
+            <ul className="list-disc ml-6 space-y-1 marker:text-black">
+              <li>Frontend: React (Vite)</li>
+              <li>Backend: FastAPI (Python)</li>
+              <li>AI/ML: OCR, NLP, Transformers, FAISS</li>
+              <li>Database: PostgreSQL, FAISS</li>
+              <li>Cache: Redis</li>
+              <li>Notifications: EmailJS</li>
+              <li>Deployment: Docker / Compose</li>
+            </ul>
+          </Section>
 
-        <Section id="quick" title="🤸 Quick Start">
-          <div>
-            <p className="font-semibold text-black">1) Clone</p>
-            <pre className="bg-white/30 p-2 rounded border border-white/50 text-sm">
-              git clone https://github.com/BhishanSharma/KMRLSIH
-              {"\n"}cd KMRLSIH
-            </pre>
-          </div>
-          <div>
-            <p className="font-semibold text-black">2) Frontend</p>
-            <pre className="bg-white/30 p-2 rounded border border-white/50 text-sm">
-              cd frontend{"\n"}npm install{"\n"}npm run dev
-            </pre>
-          </div>
-          <div>
-            <p className="font-semibold text-black">3) Backend</p>
-            <pre className="bg-white/30 p-2 rounded border border-white/50 text-sm">
-              cd backend{"\n"}python -m venv venv{"\n"}source venv/bin/activate
-              {"\n"}pip install -r requirements.txt{"\n"}
-              uvicorn app.main:app --reload
-            </pre>
-          </div>
-        </Section>
+          <Section id="features" title="🔋 Features">
+            <ul className="list-disc ml-6 space-y-1 marker:text-black">
+              <li>Unified Upload Hub</li>
+              <li>Five-stage AI pipeline</li>
+              <li>Priority classification + alerts</li>
+              <li>Bilingual UI</li>
+              <li>Fast vector search (FAISS + Redis)</li>
+              <li>Role-based dashboards</li>
+              <li>Audit logging</li>
+            </ul>
+          </Section>
 
-        <Section id="env" title="🧾 Environment Variables">
-          <pre className="bg-white/30 p-3 rounded text-xs border border-white/50 overflow-x-auto">
-            {`SUPABASE_URL=...
+          <Section id="quick" title="🤸 Quick Start">
+            <div>
+              <p className="font-semibold text-black">1) Clone</p>
+              <pre className="bg-white/30 p-2 rounded border border-white/50 text-sm">
+                git clone https://github.com/BhishanSharma/KMRLSIH
+                {"\n"}cd KMRLSIH
+              </pre>
+            </div>
+            <div>
+              <p className="font-semibold text-black">2) Frontend</p>
+              <pre className="bg-white/30 p-2 rounded border border-white/50 text-sm">
+                cd frontend{"\n"}npm install{"\n"}npm run dev
+              </pre>
+            </div>
+            <div>
+              <p className="font-semibold text-black">3) Backend</p>
+              <pre className="bg-white/30 p-2 rounded border border-white/50 text-sm">
+                cd backend{"\n"}python -m venv venv{"\n"}source
+                venv/bin/activate
+                {"\n"}pip install -r requirements.txt{"\n"}
+                uvicorn app.main:app --reload
+              </pre>
+            </div>
+          </Section>
+
+          <Section id="env" title="🧾 Environment Variables">
+            <pre className="bg-white/30 p-3 rounded text-xs border border-white/50 overflow-x-auto">
+              {`SUPABASE_URL=...
 SUPABASE_KEY=...
 DATABASE_URL=...
 REDIS_URL=redis://redis:6379/0`}
-          </pre>
-          <p className="text-black font-medium">
-            ⚠️ Never commit .env — use a secrets manager.
-          </p>
-        </Section>
+            </pre>
+            <p className="text-black font-medium">
+              ⚠️ Never commit .env — use a secrets manager.
+            </p>
+          </Section>
 
-        <Section id="docker" title="🐳 Docker Setup">
-          <p>Backend Dockerfile example:</p>
-          <pre className="bg-white/30 p-2 rounded text-xs border border-white/50">
-            {`FROM python:3.11-slim
+          <Section id="docker" title="🐳 Docker Setup">
+            <p>Backend Dockerfile example:</p>
+            <pre className="bg-white/30 p-2 rounded text-xs border border-white/50">
+              {`FROM python:3.11-slim
 RUN apt-get update && apt-get install -y tesseract-ocr ...`}
-          </pre>
-        </Section>
+            </pre>
+          </Section>
 
-        <Section id="api" title="🔁 API Examples">
-          <pre className="bg-white/30 p-2 rounded text-xs border border-white/50">
-            {`POST /profile/history
+          <Section id="api" title="🔁 API Examples">
+            <pre className="bg-white/30 p-2 rounded text-xs border border-white/50">
+              {`POST /profile/history
 GET  /profile/history?user_id=<id>`}
-          </pre>
-        </Section>
+            </pre>
+          </Section>
 
-        <Section id="structure" title="📂 Project Structure">
-          <pre className="bg-white/30 p-2 rounded text-xs border border-white/50">
-            {`KMRLSIH/
+          <Section id="structure" title="📂 Project Structure">
+            <pre className="bg-white/30 p-2 rounded text-xs border border-white/50">
+              {`KMRLSIH/
 ├─ frontend/
 ├─ backend/
 ├─ database/
 ├─ docker-compose.yml
 └─ README.md`}
-          </pre>
-        </Section>
+            </pre>
+          </Section>
 
-        <Section id="notes" title="✅ Notes & Recommendations">
-          <ul className="list-disc ml-6 space-y-1 marker:text-black">
-            <li>Hash passwords, never plaintext</li>
-            <li>Keep Supabase keys server-side</li>
-            <li>Ensure Malayalam OCR traineddata</li>
-            <li>Enable TLS, CORS, CI/CD pipelines</li>
-          </ul>
-        </Section>
+          <Section id="notes" title="✅ Notes & Recommendations">
+            <ul className="list-disc ml-6 space-y-1 marker:text-black">
+              <li>Hash passwords, never plaintext</li>
+              <li>Keep Supabase keys server-side</li>
+              <li>Ensure Malayalam OCR traineddata</li>
+              <li>Enable TLS, CORS, CI/CD pipelines</li>
+            </ul>
+          </Section>
+        </div>
       </div>
     </div>
   );

@@ -65,7 +65,7 @@ export default function AdminOptions() {
       </h1>
 
       {/* Create Department */}
-      <div className="w-full mx-auto md:mx-0 p-6 md:p-8 bg-white/50 backdrop-blur-md rounded-2xl shadow flex flex-col gap-4 border border-white/30">
+      <div className="w-full mx-auto md:mx-0 p-6 md:p-8 bg-white/30 backdrop-blur-md hover:text-black/50  rounded-2xl shadow flex flex-col gap-4 border border-white/30">
         <h2 className="text-2xl font-semibold text-black mb-2">
           Create Department
         </h2>
@@ -78,7 +78,7 @@ export default function AdminOptions() {
         />
         <button
           onClick={handleCreateDepartment}
-          className="self-start px-6 py-3 rounded-2xl bg-white/30 text-black hover:bg-white/50 hover:text-black/50transition shadow"
+          className="self-start px-6 py-3 rounded-2xl bg-white/30 text-black hover:bg-white/50 transition shadow"
         >
           Create Department
         </button>
@@ -160,7 +160,7 @@ export default function AdminOptions() {
           onChange={(e) =>
             setDeptChange({ ...deptChange, userId: e.target.value })
           }
-          className="w-full px-4 py-3 rounded-2xl border border-green-400 placeholder-green-500 text-green-500"
+          className="w-full px-4 py-3 rounded-2xl border border-white/70 placeholder-black/80 text-black"
         />
         <input
           type="text"
@@ -169,11 +169,11 @@ export default function AdminOptions() {
           onChange={(e) =>
             setDeptChange({ ...deptChange, deptName: e.target.value })
           }
-          className="w-full px-4 py-3 rounded-2xl border border-green-400 placeholder-green-500 text-green-500"
+          className="w-full px-4 py-3 rounded-2xl border border-white/70 placeholder-black/80 text-black"
         />
         <button
           onClick={handleChangeDepartment}
-          className="self-start px-6 py-3 rounded-2xl bg-green-100 text-green-500 hover:bg-green-500 hover:text-green-200 transition shadow"
+          className="self-start px-6 py-3 rounded-2xl bg-white/30 hover:bg-white/50 text-black  hover:text-black/30 transition shadow"
         >
           Change Department
         </button>

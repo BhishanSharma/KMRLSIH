@@ -24,7 +24,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-[200vh] bg-white/30 rounded-2xl mt-10">
+    <div className="min-h-[200vh] ms-6 bg-white/30  rounded-4xl mt-10">
       {/* Sidebar */}
       <Sidebar
         sidebarOpen={sidebarOpen}
@@ -39,16 +39,16 @@ const Dashboard = () => {
 
       {/* Main Content */}
       <div
-        className={`transition-all duration-300 ${
+        className={`transition-all p-1 duration-300 ${
           sidebarOpen ? "lg:ml-64" : "ml-0"
         }`}
       >
         <main
           className="
             min-h-[100vh] overflow-auto
-          backdrop-blur-xl
-             rounded-xl
-            mt-6 mx-3 sm:mx-4 lg:mx-8 p-4 sm:p-6 lg:p-8
+          backdrop-blur-3xl bg-neutral-300/20
+             rounded-4xl
+            mt-6 m-5 sm:mx-4 lg:mx-8 p-4 sm:p-6 
           "
         >
           <DocumentStacksSection userId={uid} />

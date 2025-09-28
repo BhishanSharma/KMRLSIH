@@ -9,7 +9,7 @@ export default function Footer() {
         z-30
       "
     >
-      <p className="text-sm text-green-500">
+      <p className="text-sm text-black/60">
         © {new Date().getFullYear()} KMRLSIH — Team Code Terrors
       </p>
     </footer>

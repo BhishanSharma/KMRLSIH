@@ -68,17 +68,17 @@ export default function NotificationPanel() {
   };
 
   return (
-    <div className="w-full mx-auto h-full bg-white shadow-md p-6 mt-4">
+    <div className="w-full mx-auto h-full bg-white/30 rounded-2xl mt-10 shadow-md p-6 ">
       <h2 className="text-xl font-semibold mb-4">Notifications</h2>
 
       {notifications.length === 0 ? (
         <p className="text-gray-500 text-center">No new notifications</p>
       ) : (
-        <ul className="divide-y divide-gray-200">
+        <ul className="">
           {notifications.map((notif) => (
             <li
               key={notif.id}
-              className="flex items-start gap-3 py-5 hover:bg-gray-50 px-2 transition"
+              className="flex items-start gap-3 py-5 hover:bg-white/50 rounded-2xl px-2 transition-colors"
             >
               <div>{iconMap[notif.type]}</div>
               <div className="flex-1">

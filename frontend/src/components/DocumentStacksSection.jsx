@@ -59,9 +59,9 @@ const DocumentStacksSection = ({ userId }) => {
   };
 
   // Process stack configs to include actual icon components
-  const processedStackConfigs = stackConfigs.map(config => ({
+  const processedStackConfigs = stackConfigs.map((config) => ({
     ...config,
-    icon: iconMap[config.icon] || FileText
+    icon: iconMap[config.icon] || FileText,
   }));
 
   // Fetch documents
@@ -73,7 +73,7 @@ const DocumentStacksSection = ({ userId }) => {
         const response = await listDocuments(userId);
         console.log("Fetched documents:", response);
         const documents = response.data || response;
-        
+
         // Check if the response contains an error
         if (documents && documents.error) {
           console.log("API returned error:", documents.error);
@@ -83,7 +83,7 @@ const DocumentStacksSection = ({ userId }) => {
           setDocumentStacks(emptyStacks);
           return;
         }
-        
+
         if (Array.isArray(documents)) {
           const categorizedStacks = categorizeDocuments(documents);
           setDocumentStacks(categorizedStacks);
@@ -110,32 +110,35 @@ const DocumentStacksSection = ({ userId }) => {
   // Enhanced handleOpenDocument function
   const handleOpenDocument = async (document) => {
     console.log("Opening document:", document);
-    
+
     // Validate document object
     if (!document || !document.id) {
       console.error("Invalid document object:", document);
       return;
     }
-    
+
     // Set processing state for this specific document
-    setProcessingStates((prev) => ({ 
-      ...prev, 
-      [`view_${document.id}`]: true 
+    setProcessingStates((prev) => ({
+      ...prev,
+      [`view_${document.id}`]: true,
     }));
-    
+
     try {
       // Mark document as viewed
       if (userId && document.id) {
-        console.log("Marking document as viewed:", document.id[0] || document.name);
+        console.log(
+          "Marking document as viewed:",
+          document.id[0] || document.name
+        );
         console.log("User ID:", userId);
         await markViewed(userId, document.id);
-        
+
         // Update the document in all stacks to reflect viewed status
         setDocumentStacks((prev) => {
           const newStacks = { ...prev };
           Object.keys(newStacks).forEach((stackKey) => {
-            newStacks[stackKey] = newStacks[stackKey].map((doc) => 
-              doc.id === document.id 
+            newStacks[stackKey] = newStacks[stackKey].map((doc) =>
+              doc.id === document.id
                 ? { ...doc, viewed: true, marked_as_read: true }
                 : doc
             );
@@ -143,18 +146,20 @@ const DocumentStacksSection = ({ userId }) => {
           return newStacks;
         });
       }
-      
+
       // Open the PDF viewer/document viewer overlay
-      console.log("Opening document viewer for:", document.name || document.title);
+      console.log(
+        "Opening document viewer for:",
+        document.name || document.title
+      );
       setDocumentViewerPage({
         isOpen: true,
         document: {
           ...document,
           viewed: true,
-          marked_as_read: true
+          marked_as_read: true,
         },
       });
-      
     } catch (err) {
       console.error("Error handling document open:", err);
       // Still open the viewer even if marking as viewed fails
@@ -164,9 +169,9 @@ const DocumentStacksSection = ({ userId }) => {
       });
     } finally {
       // Clear processing state
-      setProcessingStates((prev) => ({ 
-        ...prev, 
-        [`view_${document.id}`]: false 
+      setProcessingStates((prev) => ({
+        ...prev,
+        [`view_${document.id}`]: false,
       }));
     }
   };
@@ -215,11 +220,11 @@ const DocumentStacksSection = ({ userId }) => {
 
   if (error) {
     return (
-      <div className="p-6 bg-red-50 border border-red-200 rounded-xl">
-        <p className="text-red-600">⚠️ {error}</p>
-        <button 
-          onClick={() => window.location.reload()} 
-          className="mt-2 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+      <div className="p-6 bg-red-200/50 border border-red-500 rounded-4xl">
+        <p className="text-red-700 bg-red-200/50 rounded-4xl p-3">⚠️ {error}</p>
+        <button
+          onClick={() => window.location.reload()}
+          className="mt-2 px-4 py-2 bg-red-600 rounded-4xl text-white hover:bg-red-700"
         >
           Retry
         </button>

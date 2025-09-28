@@ -73,7 +73,7 @@ function RecentDocuments() {
   );
 
   return (
-    <div className="bg-white rounded-xl border border-neutral-200 p-6 shadow-sm">
+    <div className="bg-white/60 rounded-4xl border border-white/80 p-6 shadow-sm">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <h2 className="text-xl font-semibold text-primary">
@@ -87,7 +87,7 @@ function RecentDocuments() {
             onChange={(e) => setSearchQuery(e.target.value)}
             className="px-4 py-2 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition w-full sm:w-auto"
           />
-          <button className="flex items-center gap-2 px-4 py-2 border border-neutral-300 rounded-lg hover:bg-neutral-50 transition">
+          <button className="flex items-center gap-2 px-4 py-2 border border-neutral-300 rounded-lg hover:bg-white/80 transition">
             <Filter size={16} />
             {t.filter}
           </button>
@@ -105,7 +105,7 @@ function RecentDocuments() {
           filteredFiles.map((file) => (
             <div
               key={file.id}
-              className="border border-neutral-200 rounded-lg p-4 hover:shadow-lg transition-shadow flex flex-col lg:flex-row gap-4 lg:gap-6"
+              className="border border-neutral-300 rounded-lg p-4 hover:shadow-lg transition-shadow flex flex-col lg:flex-row gap-4 lg:gap-6"
             >
               {/* Left: File Info */}
               <div className="flex-1 flex flex-col">

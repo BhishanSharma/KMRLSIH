@@ -121,7 +121,7 @@ export default function Login() {
               disabled={loading}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full py-4 bg-green-200 text-green-500 hover:bg-green-700 hover:text-green-200 rounded-xl transition-colors font-semibold flex items-center justify-center text-lg"
+              className="w-full py-4 bg-white/50 backdrop-blur-3xl text-black/60 hover:bg-white/80 hover:text-black rounded-xl transition-colors font-semibold flex items-center justify-center text-lg"
             >
               {loading ? "Signing in..." : "Sign In"}
             </motion.button>

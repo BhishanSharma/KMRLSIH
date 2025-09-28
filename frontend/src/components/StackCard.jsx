@@ -1,4 +1,3 @@
-import React from "react";
 import { Loader2 } from "lucide-react";
 
 const getShortName = (name, maxLength = 20) => {
@@ -19,7 +18,17 @@ const StackCard = ({
   const Icon = config.icon;
 
   return (
-    <div className="rounded-2xl shadow-md hover:shadow-xl border border-gray-200 bg-white flex flex-col transition-shadow duration-300">
+    <div
+      className="  rounded-2xl
+  shadow-lg
+  hover:shadow-xl
+  border border-white/80
+  bg-white/10
+  backdrop-blur-xl
+  flex flex-col
+  transition-shadow
+  duration-300"
+    >
       {/* Header */}
       <div
         className={`px-5 py-4 rounded-t-2xl bg-gradient-to-r ${config.gradient} text-white`}
@@ -45,7 +54,7 @@ const StackCard = ({
           <ul className="space-y-3">
             {currentStack.slice(currentTopIndex).map((document) => {
               const isProcessingView = processingStates[`view_${document.id}`];
-              
+
               return (
                 <li
                   key={document.id}
@@ -57,8 +66,10 @@ const StackCard = ({
                       {getShortName(document.title, 25)}
                     </h4>
                     <p className="text-xs text-gray-500">
-                      Priority: {document.priority} |{" "}
-                      Status: {document.processed=="Processed"? "Summary Available" : "Summary Not Available"}
+                      Priority: {document.priority} | Status:{" "}
+                      {document.processed == "Processed"
+                        ? "Summary Available"
+                        : "Summary Not Available"}
                     </p>
                   </div>
 

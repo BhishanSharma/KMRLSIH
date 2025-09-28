@@ -81,29 +81,29 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
     <>
       <header
         className={`
-          fixed top-4 left-3/5 -translate-x-1/2
-          w-[calc(100%-2rem)] lg:w-[calc(100%-20rem)]
-          bg-gray/90 backdrop-blur-xl
-          px-4 py-3 sm:px-6 sm:py-4
-          bg-white/30
-        
-          rounded-2xl  
-          z-40 flex justify-between items-center
-          transition-all duration-300
-        `}
+    fixed top-4 left-3/5 -translate-x-1/2
+w-full max-w-6xl mx-auto
+bg-white/20 backdrop-blur-3xl
+px-5 py-3 sm:px-7 sm:py-4
+rounded-4xl shadow-sm  border-white/80 dark:border-gray-700/40
+z-40 flex justify-between items-center
+transition-all duration-300
+`}
       >
         {/* Left side - Sidebar toggle + Search */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           {/* Sidebar toggle (mobile) */}
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="lg:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            className="lg:hidden p-2 rounded-xl bg-white/40 dark:bg-gray-700/40 
+                 hover:bg-white/60 dark:hover:bg-gray-600/50 
+                 transition-all shadow-sm"
             aria-label="Toggle sidebar"
           >
             {sidebarOpen ? (
-              <X size={20} className="text-gray-700" />
+              <X size={20} className="text-gray-800 dark:text-gray-200" />
             ) : (
-              <Menu size={20} className="text-gray-700" />
+              <Menu size={20} className="text-gray-800 dark:text-gray-200" />
             )}
           </button>
 
@@ -114,26 +114,35 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
               placeholder="Search..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="w-48 sm:w-64 lg:w-80 xl:w-96 px-3 py-1.5 pl-9 
-                text-sm sm:text-base border border-gray-200 
-                rounded-lg focus:outline-none focus:ring-2 
-                focus:ring-black-50 transition-all"
+              className="w-52 sm:w-64 lg:w-80 xl:w-96 px-4 py-2 pl-10 
+          text-sm sm:text-base 
+          rounded-2xl border border-white/50 
+          bg-white/50 
+          backdrop-blur-md 
+          placeholder-gray-400 
+          focus:outline-none focus:ring-2 focus:ring-blue-400/40 
+          transition-all shadow-sm"
             />
-            <Search className="w-4 h-4 sm:w-5 sm:h-5 absolute left-3 text-gray-400" />
+            <Search className="w-5 h-5 absolute left-3 text-gray-500 dark:text-gray-400" />
           </div>
         </div>
 
         {/* Right side - Actions */}
         <div className="flex items-center gap-2 sm:gap-3">
           {/* Notifications */}
-          {/* Notifications */}
           <button
             onClick={handlebellclick}
-            className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            className="relative p-2 rounded-xl bg-white/50
+                 hover:bg-white/80
+                 transition-all shadow-sm"
             aria-label="Notifications"
           >
-            <Bell size={20} className="text-gray-700 dark:text-gray-200" />
-            <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
+            <Bell size={20} className="text-gray-500" />
+            <span
+              className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-red-500 
+                      text-white text-xs font-bold rounded-full flex 
+                      items-center justify-center shadow-sm"
+            >
               3
             </span>
           </button>
@@ -141,13 +150,15 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
           {/* Dark Mode Toggle */}
           <button
             onClick={() => setDarkMode(!darkMode)}
-            className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+            className="p-2 rounded-xl bg-white/50
+                 hover:bg-white/80 
+                 transition-all shadow-sm"
             aria-label="Toggle Dark Mode"
           >
             {darkMode ? (
-              <Sun size={20} className="text-yellow-400" />
+              <Sun size={20} className="text-black-400" />
             ) : (
-              <Moon size={20} className="text-gray-700 dark:text-gray-200" />
+              <Moon size={20} className="text-white-800 dark:text-gray-200" />
             )}
           </button>
 
@@ -155,14 +166,17 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
           <div className="relative">
             <button
               onClick={() => setIsUserDropdownOpen(!isUserDropdownOpen)}
-              className="flex items-center gap-1 sm:gap-2 p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              className="flex items-center gap-2 px-3 py-2 rounded-xl 
+                   bg-white/50 
+                   hover:bg-white/80 
+                   transition-all shadow-sm"
               aria-label="User menu"
             >
-              <User size={20} className="text-gray-700" />
-              <span className="hidden lg:block text-sm font-medium text-gray-700">
+              <User size={20} className="text-gray-700 " />
+              <span className="hidden lg:block text-sm font-medium text-gray-700 ">
                 {user?.name || "Guest"}
               </span>
-              <ChevronDown size={14} className="text-gray-500" />
+              <ChevronDown size={14} className="text-gray-700 " />
             </button>
 
             <AnimatePresence>
@@ -172,39 +186,42 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95, y: -10 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute right-0 top-full mt-2 w-56 sm:w-64 bg-white rounded-xl shadow-xl border border-gray-200 py-2 z-50"
+                  className="absolute right-0 top-full mt-2 w-56 sm:w-64
+                            bg-white/50 backdrop-blur-2xl
+                            rounded-4xl shadow-md border border-white/50
+                            py-2 z-50"
                 >
-                  <div className="px-4 py-3 border-b border-gray-100">
-                    <p className="font-medium text-gray-800">
+                  <div className="px-4 py-3 border-b border-gray-200/30">
+                    <p className="font-medium text-gray-700">
                       {user?.name || "Guest"}
                     </p>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-gray-600/80 ">
                       {user?.email || "guest@example.com"}
                     </p>
                   </div>
 
                   {/* Language Switch */}
-                  <div className="px-4 py-3 border-b border-gray-100">
-                    <p className="text-sm font-medium text-gray-700 mb-2">
+                  <div className="px-4 py-3 border-b border-gray-200/30">
+                    <p className="text-sm font-medium text-gray-600/80  mb-2">
                       Language
                     </p>
-                    <div className="flex bg-gray-100 rounded-lg p-1">
+                    <div className="flex  rounded-lg p-1">
                       <button
                         onClick={() => handleLanguageChange("en")}
-                        className={`flex-1 px-3 py-1.5 text-sm font-medium rounded transition-colors ${
+                        className={`flex-1 px-3 py-1.5 text-sm font-medium rounded-lg transition-colors ${
                           language === "en"
-                            ? "bg-white text-green-600 shadow"
-                            : "text-gray-600"
+                            ? "bg-white text-black-600 shadow"
+                            : "text-gray-600 dark:text-gray-300"
                         }`}
                       >
                         English
                       </button>
                       <button
                         onClick={() => handleLanguageChange("ml")}
-                        className={`flex-1 px-3 py-1.5 text-sm font-medium rounded transition-colors ${
+                        className={`flex-1 px-3 py-1.5 text-sm font-medium rounded-lg transition-colors ${
                           language === "ml"
-                            ? "bg-white text-green-600 shadow"
-                            : "text-gray-600"
+                            ? "bg-white text-black-600 shadow"
+                            : "text-gray-600 dark:text-gray-300"
                         }`}
                       >
                         മലയാളം
@@ -214,20 +231,20 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
 
                   <button
                     onClick={handlesettingsclick}
-                    className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                    className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:text-black hover:bg-black/10 rounded-lg transition-colors"
                   >
                     {t.profileSettings}
                   </button>
                   <button
                     onClick={handlepreferencesclick}
-                    className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                    className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:text-black hover:bg-black/10  rounded-lg transition-colors"
                   >
                     {t.preferences}
                   </button>
-                  <div className="border-t border-gray-100 mt-1 pt-1">
+                  <div className="border-t border-gray-200/50 dark:border-gray-700/50 mt-1 pt-1">
                     <button
                       onClick={handleSignOut}
-                      className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
+                      className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-500/20 rounded-lg transition-colors"
                     >
                       {t.signOut}
                     </button>
