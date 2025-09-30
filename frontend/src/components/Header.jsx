@@ -156,9 +156,9 @@ transition-all duration-300
             aria-label="Toggle Dark Mode"
           >
             {darkMode ? (
-              <Sun size={20} className="text-black-400" />
+              <Sun size={20} className="text-black/60" />
             ) : (
-              <Moon size={20} className="text-white-800 dark:text-gray-200" />
+              <Moon size={20} className="text-black/60" />
             )}
           </button>
 

@@ -12,7 +12,7 @@ export default function FloatingMenu() {
       {/* Toggle Button */}
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center justify-center w-14 h-14 rounded-full bg-green-500 text-green-200 shadow-lg hover:scale-110 transition-transform"
+        className="flex items-center justify-center w-14 h-14 rounded-full bg-white/80 text-black/60 shadow-lg hover:scale-110 transition-transform"
       >
         {open ? <X size={24} /> : <Upload size={24} />}
       </button>
@@ -31,7 +31,7 @@ export default function FloatingMenu() {
             <motion.button
               whileTap={{ scale: 0.9 }}
               onClick={() => navigate("/uploadfile")}
-              className="flex items-center justify-center w-14 h-14 rounded-full bg-green-50 text-green-500 border-green-500 hover:bg-green-500 hover:text-green-200  shadow-md hover:scale-110 transition-transform"
+              className="flex items-center justify-center w-14 h-14 rounded-full bg-white/50 text-black/40 border-white/30 hover:bg-white/80 hover:text-black/80  shadow-md hover:scale-110 transition-transform"
             >
               <Upload size={20} />
             </motion.button>
@@ -40,7 +40,7 @@ export default function FloatingMenu() {
             <motion.button
               whileTap={{ scale: 0.9 }}
               onClick={() => navigate("/uploadurl")}
-              className="flex items-center justify-center w-14 h-14 rounded-full  bg-green-50 text-green-500 border-green-500 hover:bg-green-500 hover:text-green-200  shadow-md hover:scale-110 transition-transform"
+              className="flex items-center justify-center w-14 h-14 rounded-full  bg-white/50 text-black/40 border-white/30 hover:bg-white/80 hover:text-black/80   shadow-md hover:scale-110 transition-transform"
             >
               <LinkIcon size={20} />
             </motion.button>

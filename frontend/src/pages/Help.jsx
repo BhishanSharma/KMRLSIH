@@ -68,7 +68,7 @@ export default function Help() {
         </header>
 
         {/* Explorer-like Sections */}
-        <div className="bg-white/30 p-6 rounded-4xl shadow-md border border-white/50">
+        <div className="bg-white/70 p-6 rounded-4xl shadow-sm border border-white/50">
           <Section id="intro" title="🤖 Introduction">
             <p>
               KMRLSIH converts fragmented and multilingual documents into{" "}

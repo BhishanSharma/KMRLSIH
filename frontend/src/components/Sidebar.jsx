@@ -44,11 +44,13 @@ function Sidebar() {
     >
       {/* Logo */}
       <div className="flex items-center justify-center py-6 border-b border-white/20">
-        <img
-          src="./logo2-2.svg"
-          alt="logo"
-          className="h-12 w-auto object-contain drop-shadow-lg"
-        />
+        <NavLink to="/dashboard">
+          <img
+            src="./logo2-2.svg"
+            alt="logo"
+            className="h-12 w-auto object-contain drop-shadow-lg"
+          />
+        </NavLink>
       </div>
 
       {/* Navigation */}

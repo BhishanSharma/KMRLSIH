@@ -206,181 +206,183 @@ const AboutPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white/30 rounded-2xl mt-10 text-black">
-      {/* Hero Section */}
-      <section className="relative py-24 px-6 text-center">
-        <h1 className="text-5xl md:text-6xl text-black/80 font-bold mb-6">
-          Meet Our Team
-        </h1>
-        <p className=" text-black/60 max-w-8xl mx-auto mb-12">
-          A passionate group of developers, designers, and engineers working
-          together to create innovative solutions.
-        </p>
+    <div className="min-h-screen p-8 rounded-4xl ms-6 shadow-sm bg-white/30 mt-10">
+      <div className=" bg-neutral-300/20 p-10 rounded-4xl ">
+        {/* Hero Section */}
+        <section className="relative py-24 px-6 text-center">
+          <h1 className="text-5xl md:text-6xl text-black/80 font-bold mb-6">
+            Meet Our Team
+          </h1>
+          <p className=" text-black/60 max-w-8xl mx-auto mb-12">
+            A passionate group of developers, designers, and engineers working
+            together to create innovative solutions.
+          </p>
 
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-          {stats.map((stat, idx) => (
-            <div
-              key={idx}
-              className="backdrop-blur-xl bg-white/30 border border-white/50 rounded-2xl p-6 flex flex-col items-center transition hover:scale-105"
-            >
-              <stat.icon className="h-8 w-8 mb-2 text-black/80" />
-              <div className="text-2xl font-bold text-black/80">
-                {stat.value}
-              </div>
-              <div className="text-black/80 text-sm">{stat.label}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Tabs */}
-      <section className="py-12 px-6 flex justify-center gap-4">
-        {["team", "values", "story"].map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`px-8 py-3 rounded-full font-medium transition ${
-              activeTab === tab
-                ? "bg-white/30  text-black/80 shadow"
-                : " text-black/60 hover:bg-white/50"
-            }`}
-          >
-            {tab === "team"
-              ? "Our Team"
-              : tab === "values"
-              ? "Our Values"
-              : "Our Story"}
-          </button>
-        ))}
-      </section>
-
-      {/* Team Section */}
-      {activeTab === "team" && (
-        <section className="px-6 pb-20 max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl text-black/80 font-bold mb-4">
-              The Dream Team
-            </h2>
-            <p className="text-black/60 max-w-8xl mx-auto">
-              Each member brings unique expertise and passion to create
-              something extraordinary together.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {teamMembers.map((member, idx) => (
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+            {stats.map((stat, idx) => (
               <div
                 key={idx}
-                className="relative backdrop-blur-xl bg-green/3  bg-white/30 border-white/50 rounded-3xl p-8 transition hover:shadow hover:scale-105"
-                onMouseEnter={() => setHoveredMember(idx)}
-                onMouseLeave={() => setHoveredMember(null)}
+                className="backdrop-blur-xl bg-white/30 border border-white/50 rounded-4xl p-6 flex flex-col items-center transition hover:scale-105"
               >
-                {/* Avatar */}
-                <div className="w-20 h-20 flex items-center justify-center mb-6">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    srcset=""
-                    className="rounded-full"
-                  />
+                <stat.icon className="h-8 w-8 mb-2 text-black/80" />
+                <div className="text-2xl font-bold text-black/80">
+                  {stat.value}
                 </div>
+                <div className="text-black/80 text-sm">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </section>
 
-                <h3 className="text-xl font-bold mb-1 text-black/80">
-                  {member.name}
-                </h3>
-                <p className="text-black/60 mb-4">{member.role}</p>
-                <p className="text-black/60 text-sm mb-4">
-                  {member.description}
-                </p>
+        {/* Tabs */}
+        <section className="py-12 px-6 flex justify-center gap-4">
+          {["team", "values", "story"].map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`px-8 py-3 rounded-full font-medium transition ${
+                activeTab === tab
+                  ? "bg-white/30  text-black/80 shadow"
+                  : " text-black/60 hover:bg-white/50"
+              }`}
+            >
+              {tab === "team"
+                ? "Our Team"
+                : tab === "values"
+                ? "Our Values"
+                : "Our Story"}
+            </button>
+          ))}
+        </section>
 
-                {/* Skills */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {member.skills.map((skill, i) => (
-                    <span
-                      key={i}
-                      className="px-3 py-1 bg-white/30 text-black/80 rounded-full text-xs"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
+        {/* Team Section */}
+        {activeTab === "team" && (
+          <section className="px-6 pb-20 max-w-7xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl text-black/80 font-bold mb-4">
+                The Dream Team
+              </h2>
+              <p className="text-black/60 max-w-8xl mx-auto">
+                Each member brings unique expertise and passion to create
+                something extraordinary together.
+              </p>
+            </div>
 
-                {/* Achievements */}
-                {hoveredMember === idx && (
-                  <div className="absolute inset-0 bg-white/85 p-6 rounded-3xl flex flex-col justify-center text-black transition-opacity transition-all">
-                    <h4 className="font-semibold mb-2">Key Achievements</h4>
-                    <ul className="text-sm space-y-1">
-                      {member.achievements.map((ach, aidx) => (
-                        <li key={aidx} className="flex items-center">
-                          <Star className="h-3 w-3 mr-2" /> {ach}
-                        </li>
-                      ))}
-                    </ul>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {teamMembers.map((member, idx) => (
+                <div
+                  key={idx}
+                  className="relative backdrop-blur-xl bg-green/3  bg-white/30 border-white/50 rounded-4xl p-8 transition hover:shadow hover:scale-105"
+                  onMouseEnter={() => setHoveredMember(idx)}
+                  onMouseLeave={() => setHoveredMember(null)}
+                >
+                  {/* Avatar */}
+                  <div className="w-20 h-20 flex items-center justify-center mb-6">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      srcSet=""
+                      className="rounded-full"
+                    />
                   </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
 
-      {/* Values Section */}
-      {activeTab === "values" && (
-        <section className="px-6 pb-20 max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4 text-black/80">
-              Our Core Values
-            </h2>
-            <p className="text-black/60 max-w-8xl mx-auto">
-              The principles that guide our work and shape our team culture.
-            </p>
-          </div>
+                  <h3 className="text-xl font-bold mb-1 text-black/80">
+                    {member.name}
+                  </h3>
+                  <p className="text-black/60 mb-4">{member.role}</p>
+                  <p className="text-black/60 text-sm mb-4">
+                    {member.description}
+                  </p>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {values.map((v, i) => (
-              <div
-                key={i}
-                className="backdrop-blur-sm bg-green/30 border border-white/50 rounded-2xl p-8 flex flex-col items-center text-center hover:scale-105 transition"
-              >
-                <div className="w-16 h-16 rounded-2xl bg-white/20 flex items-center justify-center mb-4">
-                  <v.icon className="h-8 w-8 text-black/80" />
+                  {/* Skills */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {member.skills.map((skill, i) => (
+                      <span
+                        key={i}
+                        className="px-3 py-1 bg-white/30 text-black/80 rounded-full text-xs"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Achievements */}
+                  {hoveredMember === idx && (
+                    <div className="absolute inset-0 bg-white/85 p-6 rounded-4xl flex flex-col justify-center text-black transition-all">
+                      <h4 className="font-semibold mb-2">Key Achievements</h4>
+                      <ul className="text-sm space-y-1">
+                        {member.achievements.map((ach, aidx) => (
+                          <li key={aidx} className="flex items-center">
+                            <Star className="h-3 w-3 mr-2" /> {ach}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-black/80">
-                  {v.title}
-                </h3>
-                <p className="text-black/60">{v.description}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
+              ))}
+            </div>
+          </section>
+        )}
 
-      {/* Story Section */}
-      {activeTab === "story" && (
-        <section className="px-6 pb-20 max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-6 text-black/80">Our Story</h2>
-          <p className="mb-6 text-black/60">
-            From individual expertise to collective excellence.
-          </p>
-          <div className="backdrop-blur-xl bg-white/30 border border-white/20 rounded-3xl p-10 shadow-md">
-            <p className="text-black/80 mb-4">
-              Our team came together with a shared vision: to build innovative
-              digital solutions that make a real difference. Collaboration and
-              creativity drive everything we do.
+        {/* Values Section */}
+        {activeTab === "values" && (
+          <section className="px-6 pb-20 max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4 text-black/80">
+                Our Core Values
+              </h2>
+              <p className="text-black/60 max-w-8xl mx-auto">
+                The principles that guide our work and shape our team culture.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              {values.map((v, i) => (
+                <div
+                  key={i}
+                  className="backdrop-blur-sm bg-green/30 border border-white/50 rounded-4xl p-8 flex flex-col items-center text-center hover:scale-105 transition"
+                >
+                  <div className="w-16 h-16 rounded-2xl bg-white/20 flex items-center justify-center mb-4">
+                    <v.icon className="h-8 w-8 text-black/80" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-2 text-black/80">
+                    {v.title}
+                  </h3>
+                  <p className="text-black/60">{v.description}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Story Section */}
+        {activeTab === "story" && (
+          <section className="px-6 pb-20 max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl font-bold mb-6 text-black/80">Our Story</h2>
+            <p className="mb-6 text-black/60">
+              From individual expertise to collective excellence.
             </p>
-            <p className="text-black/80 mb-4">
-              With diverse backgrounds spanning frontend development, backend
-              architecture, AI/ML engineering, and design, we bring a unique
-              perspective to every project.
-            </p>
-            <blockquote className="text-black/80 italic border-l-4 border-white/50 pl-4 mt-4">
-              "Great things are done by a series of small things brought
-              together."
-            </blockquote>
-          </div>
-        </section>
-      )}
+            <div className="backdrop-blur-xl bg-white/30 border border-white/20 rounded-4xl p-10 shadow-md">
+              <p className="text-black/80 mb-4">
+                Our team came together with a shared vision: to build innovative
+                digital solutions that make a real difference. Collaboration and
+                creativity drive everything we do.
+              </p>
+              <p className="text-black/80 mb-4">
+                With diverse backgrounds spanning frontend development, backend
+                architecture, AI/ML engineering, and design, we bring a unique
+                perspective to every project.
+              </p>
+              <blockquote className="text-black/80 italic border-l-4 border-white/50 pl-4 mt-4">
+                "Great things are done by a series of small things brought
+                together."
+              </blockquote>
+            </div>
+          </section>
+        )}
+      </div>
     </div>
   );
 };
