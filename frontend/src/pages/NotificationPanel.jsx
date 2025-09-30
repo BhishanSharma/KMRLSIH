@@ -68,27 +68,29 @@ export default function NotificationPanel() {
   };
 
   return (
-    <div className="w-full mx-auto h-full bg-white/30 rounded-2xl mt-10 shadow-md p-6 ">
-      <h2 className="text-xl font-semibold mb-4">Notifications</h2>
+    <div className="w-full mx-auto h-full bg-white/30 rounded-4xl ms-6 mt-10 shadow-md p-6 ">
+      <div className="bg-neutral-300/20 p-10  rounded-4xl">
+        <h2 className="text-xl font-semibold mb-4">Notifications</h2>
 
-      {notifications.length === 0 ? (
-        <p className="text-gray-500 text-center">No new notifications</p>
-      ) : (
-        <ul className="">
-          {notifications.map((notif) => (
-            <li
-              key={notif.id}
-              className="flex items-start gap-3 py-5 hover:bg-white/50 rounded-2xl px-2 transition-colors"
-            >
-              <div>{iconMap[notif.type]}</div>
-              <div className="flex-1">
-                <p className="text-sm text-gray-800">{notif.message}</p>
-                <span className="text-xs text-gray-500">{notif.time}</span>
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
+        {notifications.length === 0 ? (
+          <p className="text-gray-500 text-center">No new notifications</p>
+        ) : (
+          <ul className="">
+            {notifications.map((notif) => (
+              <li
+                key={notif.id}
+                className="flex items-start gap-3 py-5 hover:bg-white/50 rounded-4xl px-5 transition-colors"
+              >
+                <div>{iconMap[notif.type]}</div>
+                <div className="flex-1">
+                  <p className="text-sm text-gray-800">{notif.message}</p>
+                  <span className="text-xs text-gray-500">{notif.time}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 }
